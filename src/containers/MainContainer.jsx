@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Form from '../components/Form'
 import NavBar from '../components/NavBar'
-import {Route} from 'react-router'
+import Home from '../components/Home'
+
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {withRouter} from 'react-router-dom'
 
 
@@ -15,8 +17,9 @@ class MainContainer extends Component {
   }
 
   handleSubmit = (userInfo, route, method) => {
-    fetch(`http://localhost:4000${route}`, {
-      method: `${method}`,
+    // console.log(route)
+    fetch(`http://localhost:4000/${route}`, {
+      method: method,
       headers: {
         'content-type': 'application/json'
       },
@@ -24,7 +27,8 @@ class MainContainer extends Component {
         userInfo
       )
     })
-    .then(r => r.json())
+    // .then(console.log)
+    // .then(console.log)
     .then(userData => {
       this.setState({
         user: userData
@@ -33,24 +37,27 @@ class MainContainer extends Component {
   }
 
 renderForm = (routerProps) => {
-  let {pathname} = routerProps.location.pathname
+  let {pathname} = routerProps.location
     // console.log(routerProps)
     if (pathname === '/signup') {
-      return <Form formName='Signup' submit={this.handleSubmit} error={this.state.error_message}/>
+      return <Form formName='Signup' handleSubmit={this.handleSubmit} error={this.state.error_message}/>
     } else if (pathname === '/login') {
-      return <Form formName='Login' submit={this.handleSubmit} error={this.state.error_message}/>
+      return <Form formName='Login' handleSubmit={this.handleSubmit} error={this.state.error_message}/>
     }
   }
 
   render() {
     return (
-
+      <Router >
       <div>
       <NavBar />
-      <Route path='/signup' render={this.renderForm}/>
-      <Route path='/login' render={this.renderForm}/>
-
+      <Switch>
+        <Route path='/home' component={Home}/>
+        <Route path='/signup' render={this.renderForm}/>
+        <Route path='/login' render={this.renderForm}/>
+      </Switch>
       </div>
+      </Router>
     );
   }
 

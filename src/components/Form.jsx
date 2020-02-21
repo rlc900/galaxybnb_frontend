@@ -13,19 +13,24 @@ class Form extends Component {
   let userInfo = this.state
 
   if (path === '/signup') {
-    this.props.submit(userInfo, path, 'POST')
+    this.props.handleSubmit(userInfo, path, 'POST')
   } else if (path === '/login') {
-    this.props.submit(userInfo, path, 'POST')
+    this.props.handleSubmit(userInfo, path, 'POST')
   }
 }
 
   handleOnChange = (evt) => {
-
+    // console.log(evt.target.value)
+    let {name, value} = evt.target
+    this.setState({
+      [name]: value
+    })
   }
 
   render() {
     let {username, password} = this.state
     let {formName} = this.props
+    // console.log('hey from form')
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>{formName}</h1>
