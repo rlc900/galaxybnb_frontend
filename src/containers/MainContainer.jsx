@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar'
 import Home from '../components/Home'
 import Profile from '../components/Profile'
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {Switch, Route} from 'react-router'
 import {withRouter} from 'react-router-dom'
 
 
@@ -15,6 +15,30 @@ class MainContainer extends Component {
     token: '',
     error_message: ''
 
+  }
+
+  componentDidMount() {
+    // info persisted when page refreshes
+    if(localStorage.getItem('token')) {
+      let token = localStorage.getItem('token')
+      fetch(`http://localhost:4000/persist`, {
+        headers: {
+        'Authorization': `bearer ${token}`
+      }
+      })
+      .then(r => r.json())
+      .then(userData => {
+        if (userData.token) {
+          localStorage.setItem('token', userData.token)
+          this.setState({
+            user: userData.user,
+            token: userData.token
+          }, () => {
+             this.props.history.push('/home')
+          })
+        }
+      })
+    }
   }
 
   handleSubmit = (userInfo, route, method) => {
@@ -33,10 +57,13 @@ class MainContainer extends Component {
     // .then(console.log)
     // .then(userData => {
       // console.log(userData.error)})
+      // .then(console.log(this.props.history))
     .then(userData => {
       if (!userData.error) {
+        localStorage.setItem('token', userData.token)
         this.setState({
-          user: userData,
+          user: userData.user,
+          token: userData.token
         }, () => {
            this.props.history.push('/home')
         })
@@ -59,24 +86,31 @@ renderForm = (routerProps) => {
   }
 
   renderProfile = () => {
-    return <Profile user={this.state.user}/>
+    return <Profile token={this.state.token} user={this.state.user}/>
+  }
+
+  renderLogout = (routerProps) => {
+    this.setState({
+      user: {}
+    })
+    localStorage.clear()
+    routerProps.history.push('/home')
   }
 
   render() {
     console.log('APP STATE', this.state)
     return (
-      <Router >
-      <div>
+      <div className='main-container'>
       <NavBar />
       <Switch>
         <Route path='/home' exact render={() => <Home /> } />
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>
-        
+        <Route path='/logout' render={this.renderLogout}/>
+
       </Switch>
       </div>
-      </Router>
       );
     }
 
