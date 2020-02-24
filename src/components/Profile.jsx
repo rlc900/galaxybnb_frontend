@@ -1,5 +1,5 @@
-
 import React, { Component } from 'react';
+// import { Button } from 'semantic-ui-react'
 
 class Profile extends Component {
 
@@ -15,7 +15,7 @@ class Profile extends Component {
     return (
       <div>
       <h2>{username}&apos;s Profile</h2>
-      <button onClick={this.handleClick}>Delete Profile :/</button>
+      <button className='ui button' onClick={this.handleClick}>Delete Profile :/</button>
       </div>
     );
   }

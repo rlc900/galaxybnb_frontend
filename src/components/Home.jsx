@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-      Home Page
+      Galaxybnb
       </div>
     );
   }

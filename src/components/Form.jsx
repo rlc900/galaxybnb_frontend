@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+// import { Button, Checkbox, Form } from 'semantic-ui-react'
 
-class Form extends Component {
+class UserForm extends Component {
 
   state = {
     username: '',
@@ -36,21 +37,26 @@ class Form extends Component {
     let path = window.location.pathname
     // console.log('hey from form')
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="ui form">
         <h1>{formName}</h1>
-        <label htmlFor='username'>Username:</label>
-        <input type='text' autoComplete='off'onChange={this.handleOnChange} value={username} name='username'/>
-        { path === '/update' ?
-          null :
-        <>
-        <label htmlFor='password'>Password:</label>
-        <input type='password' autoComplete='off' onChange={this.handleOnChange} value={password} name='password'/>
-        </>}
-        <input type='submit' value='Submit'/>
+          <div className='field'>
+            <label htmlFor='username'>Username:</label>
+              <input type='text' autoComplete='off'onChange={this.handleOnChange} value={username} name='username'/>
+          </div>
+          <div className='field'>
+            { path === '/update' ?
+              null :
+            <>
+              <label htmlFor='password'>Password:</label>
+              <input type='password' autoComplete='off' onChange={this.handleOnChange} value={password} name='password'/>
+            </>
+            }
+         </div>
+        <button type="submit" className="ui button">Submit</button>
       </form>
     );
   }
 
 }
 
-export default Form;
+export default UserForm;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from '../components/Form'
+import UserForm from '../components/Form'
 import NavBar from '../components/NavBar'
 import Home from '../components/Home'
 import Profile from '../components/Profile'
@@ -80,11 +80,11 @@ renderForm = (routerProps) => {
   let {error_message, user} = this.state
     // console.log(routerProps)
     if (pathname === '/signup') {
-      return <Form formName='Signup' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
+      return <UserForm formName='Signup' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
     } else if (pathname === '/login') {
-      return <Form formName='Login' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
+      return <UserForm formName='Login' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
     }  else if (routerProps.location.pathname === '/update') {
-      return <Form formName='Update Username' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
+      return <UserForm formName='Update Username' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
     }
   }
 
