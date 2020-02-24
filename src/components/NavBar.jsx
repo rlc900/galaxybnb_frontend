@@ -10,6 +10,7 @@ class NavBar extends Component {
       <Link to ='/home'>Home</Link>
       <Link to ='/profile'>Profile</Link>
       <Link to ='/logout'>Logout</Link>
+      <Link to ='/update'>Update Username</Link>
       </ul>
       )
     } else {

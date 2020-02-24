@@ -9,6 +9,7 @@ class Form extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault()
+    // console.log(this.props.user);
   let path = window.location.pathname
   let userInfo = this.state
 
@@ -16,7 +17,9 @@ class Form extends Component {
     this.props.handleSubmit(userInfo, path, 'POST')
   } else if (path === '/login') {
     this.props.handleSubmit(userInfo, path, 'POST')
-  }
+  } else  {
+    this.props.handleSubmit({username: this.state.username}, `/users/${this.props.user.id}`, 'PATCH')
+    }
 }
 
   handleOnChange = (evt) => {
@@ -30,17 +33,20 @@ class Form extends Component {
   render() {
     let {username, password} = this.state
     let {formName} = this.props
+    let path = window.location.pathname
     // console.log('hey from form')
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>{formName}</h1>
-
         <label htmlFor='username'>Username:</label>
         <input type='text' autoComplete='off'onChange={this.handleOnChange} value={username} name='username'/>
+        { path === '/update' ?
+          null :
+        <>
         <label htmlFor='password'>Password:</label>
         <input type='password' autoComplete='off' onChange={this.handleOnChange} value={password} name='password'/>
+        </>}
         <input type='submit' value='Submit'/>
-
       </form>
     );
   }

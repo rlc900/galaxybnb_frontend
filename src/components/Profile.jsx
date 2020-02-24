@@ -4,11 +4,10 @@ import React, { Component } from 'react';
 class Profile extends Component {
 
 
-  // handleClick = () => {
-  //   // console.log('dis werks')
-  //   // I want this function
-  //   this.props.handleDelete(this.props.user.id)
-  // }
+  handleClick = () => {
+    // console.log('yo');
+    this.props.handleDelete(this.props.user.id)
+  }
 
   render() {
     // console.log(this.props);

@@ -77,16 +77,19 @@ class MainContainer extends Component {
 
 renderForm = (routerProps) => {
   let {pathname} = routerProps.location
+  let {error_message, user} = this.state
     // console.log(routerProps)
     if (pathname === '/signup') {
-      return <Form formName='Signup' handleSubmit={this.handleSubmit} error={this.state.error_message}/>
+      return <Form formName='Signup' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
     } else if (pathname === '/login') {
-      return <Form formName='Login' handleSubmit={this.handleSubmit} error={this.state.error_message}/>
+      return <Form formName='Login' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
+    }  else if (routerProps.location.pathname === '/update') {
+      return <Form formName='Update Username' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
     }
   }
 
   renderProfile = () => {
-    return <Profile token={this.state.token} user={this.state.user}/>
+    return <Profile handleDelete={this.handleDelete} token={this.state.token} user={this.state.user}/>
   }
 
   renderLogout = (routerProps) => {
@@ -97,8 +100,21 @@ renderForm = (routerProps) => {
     routerProps.history.push('/home')
   }
 
+
+
+  handleDelete = (id) => {
+    fetch(`http://localhost:4000/users/${id}`, {
+      method: 'DELETE'
+    })
+    .then(r => r.json())
+    .then(() => {
+      localStorage.clear()
+      window.location.href = "/home"
+    })
+  }
+
   render() {
-    console.log('APP STATE', this.state)
+    // console.log('APP STATE', this.state)
     return (
       <div className='main-container'>
       <NavBar />
@@ -108,6 +124,7 @@ renderForm = (routerProps) => {
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
+        <Route path='/update' render={this.renderForm}/>
 
       </Switch>
       </div>
