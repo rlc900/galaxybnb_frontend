@@ -7,20 +7,40 @@ class NavBar extends Component {
   handleEntrance = () => {
     if (localStorage.token) {
       return (
-        <ul>
-      <Link to ='/home'>Home</Link>
-      <Link to ='/profile'>Profile</Link>
-      <Link to ='/logout'>Logout</Link>
-      <Link to ='/update'>Update Username</Link>
-      </ul>
+        <div>
+        <Segment inverted>
+          <Menu inverted pointing secondary>
+           <Menu.Item>
+            <Link to ='/home'>Home</Link>
+           </Menu.Item>
+           <Menu.Item>
+            <Link to ='/profile'>Profile</Link>
+           </Menu.Item>
+           <Menu.Item>
+            <Link to ='/update'>Update Username</Link>
+           </Menu.Item>
+           <Menu.Item>
+            <Link to ='/logout'>Logout</Link>
+           </Menu.Item>
+         </Menu>
+         </Segment>
+       </div>
       )
     } else {
       return (
-        <ul>
-        <Link to ='/home'>Home</Link>
-        <Link to ='/signup'>Signup</Link>
-        <Link to ='/login'>Login</Link>
-        </ul>
+        <Segment inverted>
+          <Menu inverted pointing secondary>
+           <Menu.Item>
+            <Link to ='/home'>Home</Link>
+           </Menu.Item>
+           <Menu.Item>
+            <Link to ='/signup'>Signup</Link>
+           </Menu.Item>
+           <Menu.Item>
+            <Link to ='/login'>Login</Link>
+           </Menu.Item>
+         </Menu>
+         </Segment>
       )
     }
   }
@@ -36,3 +56,20 @@ class NavBar extends Component {
 }
 
 export default NavBar;
+
+// return (
+//   <ul>
+// <Link to ='/home'>Home</Link>
+// <Link to ='/profile'>Profile</Link>
+// <Link to ='/logout'>Logout</Link>
+// <Link to ='/update'>Update Username</Link>
+// </ul>
+// )
+// } else {
+// return (
+//   <ul>
+//   <Link to ='/home'>Home</Link>
+//   <Link to ='/signup'>Signup</Link>
+//   <Link to ='/login'>Login</Link>
+//   </ul>
+// )
