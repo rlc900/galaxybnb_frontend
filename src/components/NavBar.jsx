@@ -56,20 +56,3 @@ class NavBar extends Component {
 }
 
 export default NavBar;
-
-// return (
-//   <ul>
-// <Link to ='/home'>Home</Link>
-// <Link to ='/profile'>Profile</Link>
-// <Link to ='/logout'>Logout</Link>
-// <Link to ='/update'>Update Username</Link>
-// </ul>
-// )
-// } else {
-// return (
-//   <ul>
-//   <Link to ='/home'>Home</Link>
-//   <Link to ='/signup'>Signup</Link>
-//   <Link to ='/login'>Login</Link>
-//   </ul>
-// )

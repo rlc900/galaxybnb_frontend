@@ -11,7 +11,9 @@ import {withRouter} from 'react-router-dom'
 class MainContainer extends Component {
 
   state = {
-    user: {},
+    user: {
+      username: ''
+    },
     token: '',
     error_message: ''
 
@@ -31,7 +33,7 @@ class MainContainer extends Component {
         if (userData.token) {
           localStorage.setItem('token', userData.token)
           this.setState({
-            user: userData.user,
+            user: {...userData.user, username: userData.username},
             token: userData.token
           }, () => {
              this.props.history.push('/home')
@@ -62,15 +64,16 @@ class MainContainer extends Component {
       if (!userData.error) {
         localStorage.setItem('token', userData.token)
         this.setState({
-          user: userData.user,
+          user: {...userData.user, username: userData.username},
           token: userData.token
         }, () => {
-           this.props.history.push('/home')
+           this.props.history.push('/profile')
         })
       }
       this.setState({
         error_message: userData.error
       })
+      // console.log(userData)
     })
   }
 

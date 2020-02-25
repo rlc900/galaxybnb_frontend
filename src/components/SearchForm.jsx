@@ -43,16 +43,16 @@ class SearchForm extends Component {
   }
 
   render() {
-    console.log(this.state.planets)
+    // console.log(this.state.planets)
     return (
       <Form onSubmit={this.handleSubmit}>
 
         <Form.Group widths='equal'>
         <Form.Field
             control={Select}
-            label='Gender'
+            label='Planets'
             options={this.formatOptions()}
-            placeholder='Gender'
+            placeholder='Planets'
           />
 
         </Form.Group>
@@ -67,7 +67,7 @@ class SearchForm extends Component {
         <Form.Group widths='equal'>
         <Form.Select
           fluid
-          label='How many people?'
+          label='How many travelers?'
           options={[]}
           placeholder='Travelers'
         />

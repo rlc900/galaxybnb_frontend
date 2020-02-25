@@ -53,6 +53,7 @@ class UserForm extends Component {
             }
          </div>
         <button type="submit" className="ui button">Submit</button>
+        <h2>{this.props.error}</h2>
       </form>
     );
   }

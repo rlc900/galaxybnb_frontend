@@ -10,11 +10,11 @@ class Profile extends Component {
   }
 
   render() {
-    // console.log(this.props);
-    let {user: {username}} = this.props
+    console.log(this.props.user);
+    let {user} = this.props
     return (
       <div>
-      <h2>{username}&apos;s Profile</h2>
+      <h2>{user.username}&apos;s Profile</h2>
       <button className='ui button' onClick={this.handleClick}>Delete Profile :/</button>
       </div>
     );
