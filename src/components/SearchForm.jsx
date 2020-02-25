@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
 import { Form, Select } from 'semantic-ui-react'
-import {DatesRangeInput} from 'semantic-ui-calendar-react'
+import { DatesRangeInput } from 'semantic-ui-calendar-react';
+// import DateForm from './DateForm'
 
-
+let numberOptions = [
+  {text: '1', value: '1'},
+  {text: '2', value: '2'},
+  {text: '3', value: '3'},
+  {text: '4', value: '4'},
+  {text: '5', value: '5'},
+  {text: '6', value: '6'},
+  {text: '7', value: '7'},
+  {text: '8', value: '8'},
+  {text: '9', value: '9'},
+  {text: '10', value: '10'}
+]
 class SearchForm extends Component {
 
   state = {
     planets: [],
-    datesRange: ''
+    datesRange: '',
+    whichPlanet: '',
+    numOfTravelers: ''
   }
 
-  handleSubmit = (evt) => {
+  handleSubmit = (evt, id) => {
     evt.preventDefault()
-    console.log('hey')
+    let {whichPlanet} = this.state
+    // Takes user to page where they can select
+    // places to rent
+    this.props.history.push(`/places/${whichPlanet}`)
   }
 
   componentDidMount() {
@@ -29,21 +46,21 @@ class SearchForm extends Component {
     return this.state.planets.map(planet => {
       return {
         text: planet.name,
-        value: planet.name
+        value: planet.id
       }
     })
   }
-  handleChange = (evt, {name, value}) => {
-    let {datesRange} = this.state
-    if (datesRange.hasOwnProperty(name)) {
-      this.setState({
-        [name]: value
-      });
+
+
+  handleChange = (event, {name, value}) => {
+    if (this.state.hasOwnProperty(name)) {
+      this.setState({ [name]: value });
     }
   }
 
   render() {
-    // console.log(this.state.planets)
+    // console.log(this.state)
+    console.log(this.props)
     return (
       <Form onSubmit={this.handleSubmit}>
 
@@ -52,23 +69,25 @@ class SearchForm extends Component {
             control={Select}
             label='Planets'
             options={this.formatOptions()}
+            onChange={this.handleChange}
+            name={'whichPlanet'}
             placeholder='Planets'
           />
-
         </Form.Group>
-
         <DatesRangeInput
-          name="datesRange"
-          placeholder="From - To"
-          value={this.state.datesRange}
-          iconPosition="left"
-          onChange={this.handleChange}
+         name="datesRange"
+         placeholder="From - To"
+         value={this.state.datesRange}
+         iconPosition="left"
+         onChange={this.handleChange}
         />
         <Form.Group widths='equal'>
         <Form.Select
           fluid
           label='How many travelers?'
-          options={[]}
+          options={numberOptions}
+          onChange={this.handleChange}
+          name={'numOfTravelers'}
           placeholder='Travelers'
         />
       </Form.Group>

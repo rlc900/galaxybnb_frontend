@@ -3,6 +3,7 @@ import UserForm from '../components/Form'
 import NavBar from '../components/NavBar'
 import Home from '../components/Home'
 import Profile from '../components/Profile'
+import Places from '../components/Places'
 
 import {Switch, Route} from 'react-router'
 import {withRouter} from 'react-router-dom'
@@ -33,7 +34,7 @@ class MainContainer extends Component {
         if (userData.token) {
           localStorage.setItem('token', userData.token)
           this.setState({
-            user: {...userData.user, username: userData.username},
+            user: {...userData.user, username: userData.user.username},
             token: userData.token
           }, () => {
              this.props.history.push('/home')
@@ -64,7 +65,7 @@ class MainContainer extends Component {
       if (!userData.error) {
         localStorage.setItem('token', userData.token)
         this.setState({
-          user: {...userData.user, username: userData.username},
+          user: {...userData.user, username: userData.user.username},
           token: userData.token
         }, () => {
            this.props.history.push('/profile')
@@ -83,11 +84,11 @@ renderForm = (routerProps) => {
   let {error_message, user} = this.state
     // console.log(routerProps)
     if (pathname === '/signup') {
-      return <UserForm formName='Signup' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
+      return <UserForm formName='Signup' handleSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     } else if (pathname === '/login') {
-      return <UserForm formName='Login' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
+      return <UserForm formName='Login' handleSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     }  else if (routerProps.location.pathname === '/update') {
-      return <UserForm formName='Update Username' handleSubmit={this.handleSubmit} error={error_message} user={user}/>
+      return <UserForm formName='Update Username' handleSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     }
   }
 
@@ -122,12 +123,13 @@ renderForm = (routerProps) => {
       <div className='main-container'>
       <NavBar />
       <Switch>
-        <Route path='/home' exact render={() => <Home /> } />
+        <Route path='/home' exact component={Home} />
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
+        <Route path='/places/:id' componenet={Places}/>
 
       </Switch>
       </div>

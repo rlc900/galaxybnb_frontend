@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <div className='home'>
       <Header as='h1' inverted color ='violet' >Galaxybnb</Header>
-      <SearchForm />
+      <SearchForm history={this.props.history}/>
       </div>
     );
   }
