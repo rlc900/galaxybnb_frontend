@@ -15,11 +15,11 @@ class UserForm extends Component {
   let userInfo = this.state
 
   if (path === '/signup') {
-    this.props.handleSubmit(userInfo, path, 'POST')
+    this.props.handleFormSubmit(userInfo, path, 'POST')
   } else if (path === '/login') {
-    this.props.handleSubmit(userInfo, path, 'POST')
+    this.props.handleFormSubmit(userInfo, path, 'POST')
   } else  {
-    this.props.handleSubmit({username: this.state.username}, `/users/${this.props.user.id}`, 'PATCH')
+    this.props.handleFormSubmit({username: this.state.username}, `/users/${this.props.user.id}`, 'PATCH')
     }
 }
 

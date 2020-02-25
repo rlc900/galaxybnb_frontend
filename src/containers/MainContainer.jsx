@@ -84,11 +84,11 @@ renderForm = (routerProps) => {
   let {error_message, user} = this.state
     // console.log(routerProps)
     if (pathname === '/signup') {
-      return <UserForm formName='Signup' handleSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
+      return <UserForm formName='Signup' handleFormSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     } else if (pathname === '/login') {
-      return <UserForm formName='Login' handleSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
+      return <UserForm formName='Login' handleFormSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     }  else if (routerProps.location.pathname === '/update') {
-      return <UserForm formName='Update Username' handleSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
+      return <UserForm formName='Update Username' handleFormSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     }
   }
 
@@ -129,7 +129,7 @@ renderForm = (routerProps) => {
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' componenet={Places}/>
+        <Route path='/places/:id' component={Places}/>
 
       </Switch>
       </div>
