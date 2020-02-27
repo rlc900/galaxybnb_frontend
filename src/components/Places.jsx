@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { Grid, Image, Card, Button} from 'semantic-ui-react'
+import { Grid, Image, Card, Button, Icon, Modal } from 'semantic-ui-react'
+import Emoji from './Emoji'
 
 
 // let locations_url = `http://localhost:4000/locations`
 
+
 class Places extends Component {
 
   state = {
-    planetObj: {}
+    planetObj: {},
+    open: false
   }
+
+  open = () => this.setState({ open: true })
+  close = () => this.setState({ open: false })
 
   componentDidMount() {
     // debugger;
@@ -24,19 +30,60 @@ class Places extends Component {
       })
     })
   }
-  //
+
+  nestedModal = () => {
+  const { open } = this.state
+    return <Modal
+      open={open}
+      onOpen={this.open}
+      onClose={this.close}
+      size='small'
+      trigger={
+    <Button primary icon>
+      Travel <Icon name='right chevron' />
+    </Button>
+    }
+    >
+    <Modal.Header>Modal #2</Modal.Header>
+      <Modal.Content>
+        <p>That's everything!</p>
+      </Modal.Content>
+    <Modal.Actions>
+      <Button icon='check' content='All Done' onClick={this.close} />
+    </Modal.Actions>
+    </Modal>
+  }
+
+
+
   renderLocations = () => {
       return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
-          return <Card>
+        return <Grid.Column>
+           <Card centered={true}>
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>
                 <Card.Header>{locationObj.name}</Card.Header>
               <Card.Meta>
                 <span className='date'>Joined in 2015</span>
               </Card.Meta>
-            <button class="ui circular icon button"><i aria-hidden="true" class="settings icon"></i></button>
+              <Modal trigger={<Button><Emoji symbol="🐑" label="sheep"/></Button>}>
+                <Modal.Header>Modal #1</Modal.Header>
+                  <Modal.Content image>
+                    <div className='image'>
+                      <Icon name='right arrow' />
+                    </div>
+                    <Modal.Description>
+                      <p>We have more to share with you. Follow us along to modal 2</p>
+                    </Modal.Description>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    {this.nestedModal}
+                  </Modal.Actions>
+              </Modal>
            </Card.Content>
           </Card>
+          </Grid.Column>
+
       }) : 'The force is not with you.'
   }
 
@@ -52,12 +99,6 @@ class Places extends Component {
           <Image src={this.state.planetObj.image} />
         </Grid.Column>
         <Grid.Row centered columns={4}>
-          <Grid.Column>
-            <Image src='' />
-          </Grid.Column>
-          <Grid.Column>
-            <Image src='' />
-          </Grid.Column>
         </Grid.Row>
         </Grid>
         {this.renderLocations()}
