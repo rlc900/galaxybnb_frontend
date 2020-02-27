@@ -3,7 +3,7 @@ import UserForm from '../components/Form'
 import NavBar from '../components/NavBar'
 import Home from '../components/Home'
 import Profile from '../components/Profile'
-import Places from '../components/Places'
+import PlanetLocations from '../components/PlanetLocations'
 
 import {Switch, Route} from 'react-router'
 import {withRouter} from 'react-router-dom'
@@ -16,8 +16,8 @@ class MainContainer extends Component {
       username: ''
     },
     token: '',
-    error_message: ''
-
+    error_message: '',
+    userValuesOfSearchForm: []
   }
 
   componentDidMount() {
@@ -117,20 +117,25 @@ renderForm = (routerProps) => {
     })
   }
 
+  userFormValues = (userData) => {
+    this.setState({userValuesOfSearchForm: userData})
+  }
+
+
   render() {
     // console.log('APP STATE', this.state)
     return (
       <div className='main-container'>
       <NavBar />
       <Switch>
-        <Route exact path='/home' component={Home} />
+        <Route exact path='/home' component={Home}/>
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' component={Places}/>
-        <Route component={Home}/>
+        <Route path='/places/:id' component={PlanetLocations}/>
+
 
       </Switch>
       </div>

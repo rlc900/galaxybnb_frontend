@@ -16,13 +16,13 @@ let numberOptions = [
   {text: '9', value: '9'},
   {text: '10', value: '10'}
 ]
-class SearchForm extends Component {
+class BookingForm extends Component {
 
   state = {
     planets: [],
     datesRange: '',
-    whichPlanet: '',
-    numOfTravelers: ''
+    numOfTravelers: '',
+    whichPlanet: ''
   }
 
   handleSubmit = (evt, id) => {
@@ -57,6 +57,11 @@ class SearchForm extends Component {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
     }
+
+  }
+
+  sendUserData = () => {
+    this.props.userData(this.handleChange)
   }
 
   render() {
@@ -100,4 +105,4 @@ class SearchForm extends Component {
 
 }
 
-export default SearchForm;
+export default BookingForm;

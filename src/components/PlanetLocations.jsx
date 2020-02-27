@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal } from 'semantic-ui-react'
 import Emoji from './Emoji'
+import SearchForm from './SearchForm'
 
 
 // let locations_url = `http://localhost:4000/locations`
 
 
-class Places extends Component {
+class PlanetLocations extends Component {
 
   state = {
     planetObj: {},
@@ -32,7 +33,7 @@ class Places extends Component {
   }
 
   nestedModal = () => {
-  const { open } = this.state
+   const { open } = this.state
 
     return <Modal
       open={open}
@@ -75,7 +76,8 @@ class Places extends Component {
                       <Icon name='right arrow' />
                     </div>
                     <Modal.Description>
-                      <p>Confirmation form here</p>
+                    <p>**search form they filled out here**</p>
+                    <SearchForm/>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
@@ -89,8 +91,7 @@ class Places extends Component {
       }) : 'The force is not with you.'
   }
 
-
-
+  
 
   render() {
     // debugger;
@@ -109,4 +110,4 @@ class Places extends Component {
   }
 }
 
-export default Places;
+export default PlanetLocations;
