@@ -33,6 +33,7 @@ class Places extends Component {
 
   nestedModal = () => {
   const { open } = this.state
+
     return <Modal
       open={open}
       onOpen={this.open}
@@ -44,7 +45,7 @@ class Places extends Component {
     </Button>
     }
     >
-    <Modal.Header>Modal #2</Modal.Header>
+    <Modal.Header>Youre going to **insert location name here**</Modal.Header>
       <Modal.Content>
         <p>That's everything!</p>
       </Modal.Content>
@@ -63,21 +64,22 @@ class Places extends Component {
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>
                 <Card.Header>{locationObj.name}</Card.Header>
-              <Card.Meta>
-                <span className='date'>Joined in 2015</span>
-              </Card.Meta>
-              <Modal trigger={<Button><Emoji symbol="🐑" label="sheep"/></Button>}>
-                <Modal.Header>Modal #1</Modal.Header>
+
+              <Modal trigger={<Button animated><Button.Content visible>Board Ship</Button.Content>
+                <Button.Content hidden>
+                  <Emoji symbol="🚀🚀🚀" label="spaceship"/>
+                </Button.Content></Button>}>
+                <Modal.Header>Confirmation</Modal.Header>
                   <Modal.Content image>
                     <div className='image'>
                       <Icon name='right arrow' />
                     </div>
                     <Modal.Description>
-                      <p>We have more to share with you. Follow us along to modal 2</p>
+                      <p>Confirmation form here</p>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
-                    {this.nestedModal}
+                    {this.nestedModal()}
                   </Modal.Actions>
               </Modal>
            </Card.Content>
