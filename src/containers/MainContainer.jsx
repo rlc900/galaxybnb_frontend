@@ -123,13 +123,14 @@ renderForm = (routerProps) => {
       <div className='main-container'>
       <NavBar />
       <Switch>
-        <Route path='/home' exact component={Home} />
+        <Route exact path='/home' component={Home} />
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
         <Route path='/places/:id' component={Places}/>
+        <Route component={Home}/>
 
       </Switch>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Select } from 'semantic-ui-react'
 import { DatesRangeInput } from 'semantic-ui-calendar-react';
+
 // import DateForm from './DateForm'
 
 let numberOptions = [
