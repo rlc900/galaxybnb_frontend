@@ -120,12 +120,20 @@ renderForm = (routerProps) => {
     })
   }
 
-  sendStateToMain = (selectedPlanet, date, numOfTravelers) => {
-    this.setState(prevState => ({
-      selectedPlanet: prevState.selectedPlanet + selectedPlanet,
-      date: prevState.date + date,
-      numOfTravelers: prevState.numOfTravelers + numOfTravelers
-    }))
+  // sendStateToMain = (selectedPlanet, date, numOfTravelers) => {
+  //   this.setState(prevState => ({
+  //     selectedPlanet: prevState.selectedPlanet + selectedPlanet,
+  //     datesRange: prevState.datesRange + date,
+  //     numOfTravelers: prevState.numOfTravelers + numOfTravelers
+  //   }))
+  // }
+
+  sendStateToMain = (selectedPlanet, datesRange, numOfTravelers) => {
+    this.setState({
+      selectedPlanet: selectedPlanet,
+      datesRange: datesRange,
+      numOfTravelers: numOfTravelers
+    })
   }
 
 

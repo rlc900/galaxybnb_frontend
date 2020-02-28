@@ -11,7 +11,10 @@ class PlanetLocations extends Component {
 
   state = {
     planetObj: {},
-    open: false
+    open: false,
+    selectedPlanet: '',
+    datesRange: '',
+    numOfTravelers: ''
   }
 
   open = () => this.setState({ open: true })
@@ -58,8 +61,8 @@ class PlanetLocations extends Component {
 
 
 
-  renderLocations = () => {
-    // let {selectedPlanet, datesRange, numOfTravelers} = this.props
+  renderLocations = (state) => {
+    let {selectedPlanet} = this.props.stateFromMain
       return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
            <Card centered={true}>
@@ -76,10 +79,10 @@ class PlanetLocations extends Component {
                     <div className='image'>
                       <Icon name='right arrow' />
                     </div>
-                    <Modal.Description>
-                    <div>
-
-                    </div>
+                    <Modal.Description >
+                    <p>
+                    Planet: { selectedPlanet }
+                    </p>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
@@ -97,7 +100,7 @@ class PlanetLocations extends Component {
 
   render() {
     // debugger;
-    // console.log(this.props)
+    // console.log(this.props.stateFromMain)
       return (
         <div >
         <Grid centered columns={2}>
@@ -114,6 +117,3 @@ class PlanetLocations extends Component {
 }
 
 export default PlanetLocations;
-// <h1>{selectedPlanet}</h1>
-// <h2>{datesRange}</h2>
-// <h2>{numOfTravelers}</h2>

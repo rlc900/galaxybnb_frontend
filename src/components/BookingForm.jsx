@@ -30,6 +30,7 @@ class BookingForm extends Component {
     // Takes user to page where they can select
     // places to rent
     this.props.history.push(`/places/${selectedPlanet}`)
+    this.valuesFromBooking()
   }
 
   componentDidMount() {
@@ -52,7 +53,6 @@ class BookingForm extends Component {
     })
   }
 
-
   handleChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value }, () => console.log('STATE FROM BOOKING FORM', this.state));
@@ -69,6 +69,7 @@ class BookingForm extends Component {
     // console.log(this.state)
     // console.log(this.props)
     return (
+
       <Form onSubmit={this.handleSubmit}>
 
         <Form.Group widths='equal'>
