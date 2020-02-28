@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, Select } from 'semantic-ui-react'
 import { DatesRangeInput } from 'semantic-ui-calendar-react';
 
-// import DateForm from './DateForm'
 
 let numberOptions = [
   {text: '1', value: '1'},
@@ -22,18 +21,19 @@ class BookingForm extends Component {
     planets: [],
     datesRange: '',
     numOfTravelers: '',
-    whichPlanet: ''
+    selectedPlanet: ''
   }
 
   handleSubmit = (evt, id) => {
     evt.preventDefault()
-    let {whichPlanet} = this.state
+    let {selectedPlanet} = this.state
     // Takes user to page where they can select
     // places to rent
-    this.props.history.push(`/places/${whichPlanet}`)
+    this.props.history.push(`/places/${selectedPlanet}`)
   }
 
   componentDidMount() {
+    //
     fetch(`http://localhost:4000/planets`)
         .then(r => r.json())
         .then((planetObj) => {
@@ -55,10 +55,13 @@ class BookingForm extends Component {
 
   handleChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
-      this.setState({ [name]: value }, () => console.log(this.state));
+      this.setState({ [name]: value }, () => console.log('STATE FROM BOOKING FORM', this.state));
     }
-    // this.props.handleBookingFormSubmit(this.state)
+  }
 
+  valuesFromBooking = () => {
+    let {selectedPlanet, datesRange, numOfTravelers} = this.state
+      this.props.sendStateToMain(selectedPlanet, datesRange, numOfTravelers)
   }
 
 
@@ -74,7 +77,7 @@ class BookingForm extends Component {
             label='Planets'
             options={this.formatOptions()}
             onChange={this.handleChange}
-            name={'whichPlanet'}
+            name={'selectedPlanet'}
             placeholder='Planets'
           />
         </Form.Group>

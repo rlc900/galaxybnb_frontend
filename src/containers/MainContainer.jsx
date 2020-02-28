@@ -20,7 +20,7 @@ class MainContainer extends Component {
     // userValuesOfSearchForm:
     datesRange: '',
     numOfTravelers: '',
-    // whichPlanet: ''
+    selectedPlanet: ''
   }
 
   componentDidMount() {
@@ -81,11 +81,6 @@ class MainContainer extends Component {
     })
   }
 
-  sendDownUserBookingData= (userData) => {
-    this.setState({
-      userValuesOfSearchForm: userData
-    })
-  }
 
 renderForm = (routerProps) => {
   let {pathname} = routerProps.location
@@ -125,21 +120,28 @@ renderForm = (routerProps) => {
     })
   }
 
+  sendStateToMain = (selectedPlanet, date, numOfTravelers) => {
+    this.setState(prevState => ({
+      selectedPlanet: prevState.selectedPlanet + selectedPlanet,
+      date: prevState.date + date,
+      numOfTravelers: prevState.numOfTravelers + numOfTravelers
+    }))
+  }
 
 
   render() {
-    // console.log('APP STATE', this.state)
+    console.log('MAIN CONT STATE', this.state)
     return (
       <div className='main-container'>
       <NavBar />
       <Switch>
-        <Route exact path='/home' component={Home}/>
+        <Route exact path='/home' render={(props) => <Home {...props} sendStateToMain={this.sendStateToMain}/>}/>
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} sendBookingState={this.state.sendDownUserBookingData} />}/>
+        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} stateFromMain={this.state}/>}/>
 
 
       </Switch>

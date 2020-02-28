@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal } from 'semantic-ui-react'
 import Emoji from './Emoji'
-import BookingForm from './BookingForm'
+// import BookingForm from './BookingForm'
 
 
 // let locations_url = `http://localhost:4000/locations`
@@ -46,7 +46,7 @@ class PlanetLocations extends Component {
     </Button>
     }
     >
-    <Modal.Header>Youre going to **insert location name here**</Modal.Header>
+    <Modal.Header>You're going to **insert location name here**</Modal.Header>
       <Modal.Content>
         <p>That's everything!</p>
       </Modal.Content>
@@ -59,6 +59,7 @@ class PlanetLocations extends Component {
 
 
   renderLocations = () => {
+    // let {selectedPlanet, datesRange, numOfTravelers} = this.props
       return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
            <Card centered={true}>
@@ -76,8 +77,9 @@ class PlanetLocations extends Component {
                       <Icon name='right arrow' />
                     </div>
                     <Modal.Description>
-                    <p>**search form they filled out here**</p>
-                    <BookingForm/>
+                    <div>
+
+                    </div>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
@@ -97,7 +99,7 @@ class PlanetLocations extends Component {
     // debugger;
     // console.log(this.props)
       return (
-        <div>
+        <div >
         <Grid centered columns={2}>
         <Grid.Column>
           <Image src={this.state.planetObj.image} />
@@ -112,3 +114,6 @@ class PlanetLocations extends Component {
 }
 
 export default PlanetLocations;
+// <h1>{selectedPlanet}</h1>
+// <h2>{datesRange}</h2>
+// <h2>{numOfTravelers}</h2>
