@@ -62,7 +62,7 @@ class PlanetLocations extends Component {
 
 
   renderLocations = (state) => {
-    let {selectedPlanet} = this.props.stateFromMain
+    let {selectedPlanet, datesRange, numOfTravelers} = this.props.stateFromMain
       return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
            <Card centered={true}>
@@ -77,12 +77,12 @@ class PlanetLocations extends Component {
                 <Modal.Header>Confirmation</Modal.Header>
                   <Modal.Content image>
                     <div className='image'>
-                      <Icon name='right arrow' />
+                      <Image wrapped size='medium' src='../baby_yoda.png' />
                     </div>
                     <Modal.Description >
-                    <p>
-                    Planet: { selectedPlanet }
-                    </p>
+                    <h1>Planet: { selectedPlanet }</h1>
+                    <h2>Date Range: { datesRange }</h2>
+                    <h3>Number of Travelers: { numOfTravelers }</h3>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>

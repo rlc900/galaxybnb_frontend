@@ -120,14 +120,6 @@ renderForm = (routerProps) => {
     })
   }
 
-  // sendStateToMain = (selectedPlanet, date, numOfTravelers) => {
-  //   this.setState(prevState => ({
-  //     selectedPlanet: prevState.selectedPlanet + selectedPlanet,
-  //     datesRange: prevState.datesRange + date,
-  //     numOfTravelers: prevState.numOfTravelers + numOfTravelers
-  //   }))
-  // }
-
   sendStateToMain = (selectedPlanet, datesRange, numOfTravelers) => {
     this.setState({
       selectedPlanet: selectedPlanet,
@@ -138,7 +130,7 @@ renderForm = (routerProps) => {
 
 
   render() {
-    console.log('MAIN CONT STATE', this.state)
+    // console.log('MAIN CONT STATE', this.state)
     return (
       <div className='main-container'>
       <NavBar />

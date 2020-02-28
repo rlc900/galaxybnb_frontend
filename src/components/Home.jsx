@@ -8,7 +8,7 @@ class Home extends Component {
 // Now that state is in {MainContainer}, send it down to {PlanetLocations} as props.
 
   render() {
-    console.log('PROPS FROM HOME', this.props)
+    // console.log('PROPS FROM HOME', this.props)
     let {sendStateToMain} = this.props
     return (
       <div className='home'>

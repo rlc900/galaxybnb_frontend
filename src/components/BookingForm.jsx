@@ -55,7 +55,7 @@ class BookingForm extends Component {
 
   handleChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
-      this.setState({ [name]: value }, () => console.log('STATE FROM BOOKING FORM', this.state));
+      this.setState({ [name]: value });
     }
   }
 
