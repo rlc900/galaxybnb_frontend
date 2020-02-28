@@ -79,10 +79,17 @@ class PlanetLocations extends Component {
             <Card.Content>
                 <Card.Header>{locationObj.name}</Card.Header>
 
-              <Modal trigger={<Button animated><Button.Content visible>Board Ship</Button.Content>
-                <Button.Content hidden>
-                  <Emoji symbol="🚀🚀🚀" label="spaceship"/>
-                </Button.Content></Button>}>
+              <Modal trigger={
+                <div className='ui two buttons'>
+                <Button animated><Button.Content visible>Board Ship</Button.Content>
+                  <Button.Content hidden>
+                    <Emoji symbol="🚀🚀🚀" label="spaceship"/>
+                  </Button.Content></Button>
+                  <Button animated='vertical'><Button.Content visible>Desc</Button.Content>
+                    <Button.Content hidden>
+                      <Emoji symbol="🚀🚀🚀" label="spaceship"/>
+                    </Button.Content></Button>
+                </div>}>
                 <Modal.Header>Confirmation</Modal.Header>
                   <Modal.Content image>
                     <div className='image'>
@@ -98,6 +105,7 @@ class PlanetLocations extends Component {
                     {this.nestedModal()}
                   </Modal.Actions>
               </Modal>
+
            </Card.Content>
           </Card>
           </Grid.Column>
@@ -127,3 +135,20 @@ class PlanetLocations extends Component {
 }
 
 export default PlanetLocations;
+
+// <div className='ui two buttons'>
+//          <Button basic color='green'>
+//            Approve
+//          </Button>
+//          <Button basic color='red'>
+//            Decline
+//          </Button>
+//        </div>
+
+
+// <Modal trigger={
+//
+//   <Button animated><Button.Content visible>Board Ship</Button.Content>
+//   <Button.Content hidden>
+//     <Emoji symbol="🚀🚀🚀" label="spaceship"/>
+//   </Button.Content></Button>}>
