@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal } from 'semantic-ui-react'
 import Emoji from './Emoji'
-import SearchForm from './SearchForm'
+import BookingForm from './BookingForm'
 
 
 // let locations_url = `http://localhost:4000/locations`
@@ -77,7 +77,7 @@ class PlanetLocations extends Component {
                     </div>
                     <Modal.Description>
                     <p>**search form they filled out here**</p>
-                    <SearchForm/>
+                    <BookingForm/>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
@@ -91,10 +91,11 @@ class PlanetLocations extends Component {
       }) : 'The force is not with you.'
   }
 
-  
+
 
   render() {
     // debugger;
+    // console.log(this.props)
       return (
         <div>
         <Grid centered columns={2}>

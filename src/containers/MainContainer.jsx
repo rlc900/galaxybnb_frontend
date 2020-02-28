@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserForm from '../components/Form'
+import UserForm from '../components/UserForm'
 import NavBar from '../components/NavBar'
 import Home from '../components/Home'
 import Profile from '../components/Profile'
@@ -17,7 +17,10 @@ class MainContainer extends Component {
     },
     token: '',
     error_message: '',
-    userValuesOfSearchForm: []
+    // userValuesOfSearchForm:
+    datesRange: '',
+    numOfTravelers: '',
+    // whichPlanet: ''
   }
 
   componentDidMount() {
@@ -78,6 +81,11 @@ class MainContainer extends Component {
     })
   }
 
+  sendDownUserBookingData= (userData) => {
+    this.setState({
+      userValuesOfSearchForm: userData
+    })
+  }
 
 renderForm = (routerProps) => {
   let {pathname} = routerProps.location
@@ -117,9 +125,6 @@ renderForm = (routerProps) => {
     })
   }
 
-  userFormValues = (userData) => {
-    this.setState({userValuesOfSearchForm: userData})
-  }
 
 
   render() {
@@ -134,7 +139,7 @@ renderForm = (routerProps) => {
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' component={PlanetLocations}/>
+        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} sendBookingState={this.state.sendDownUserBookingData} />}/>
 
 
       </Switch>

@@ -55,14 +55,12 @@ class BookingForm extends Component {
 
   handleChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
-      this.setState({ [name]: value });
+      this.setState({ [name]: value }, () => console.log(this.state));
     }
+    // this.props.handleBookingFormSubmit(this.state)
 
   }
 
-  sendUserData = () => {
-    this.props.userData(this.handleChange)
-  }
 
   render() {
     // console.log(this.state)
