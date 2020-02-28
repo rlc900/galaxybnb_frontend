@@ -102,7 +102,7 @@ class BookingForm extends Component {
         />
       </Form.Group>
 
-        <Form.Button>Submit</Form.Button>
+        <Form.Button inverted color='violet'>Submit</Form.Button>
       </Form>
     );
   }

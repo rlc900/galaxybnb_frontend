@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Image, Card, Button, Icon, Modal } from 'semantic-ui-react'
+import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-react'
 import Emoji from './Emoji'
 // import BookingForm from './BookingForm'
 
@@ -43,6 +43,10 @@ class PlanetLocations extends Component {
     })
   }
 
+  goToProfile = () => {
+
+  }
+
   nestedModal = () => {
    const { open } = this.state
 
@@ -52,7 +56,7 @@ class PlanetLocations extends Component {
       onClose={this.close}
       size='small'
       trigger={
-    <Button primary icon>
+    <Button circular={true} inverted color='violet'>
       Travel <Icon name='right chevron' />
     </Button>
     }
@@ -62,7 +66,8 @@ class PlanetLocations extends Component {
         <p>That's everything!</p>
       </Modal.Content>
     <Modal.Actions>
-      <Button icon='check' content='All Done' onClick={this.close} />
+      <Button color='black' icon='check' content='Profile' onClick={this.goToProfile} >
+      </Button>
     </Modal.Actions>
     </Modal>
   }
@@ -80,15 +85,11 @@ class PlanetLocations extends Component {
                 <Card.Header>{locationObj.name}</Card.Header>
 
               <Modal trigger={
-                <div className='ui two buttons'>
-                <Button animated><Button.Content visible>Board Ship</Button.Content>
+                <div>
+                <Button animated inverted color='violet' size='small'><Button.Content visible>Board Ship</Button.Content>
                   <Button.Content hidden>
                     <Emoji symbol="🚀🚀🚀" label="spaceship"/>
                   </Button.Content></Button>
-                  <Button animated='vertical'><Button.Content visible>Desc</Button.Content>
-                    <Button.Content hidden>
-                      <Emoji symbol="🚀🚀🚀" label="spaceship"/>
-                    </Button.Content></Button>
                 </div>}>
                 <Modal.Header>Confirmation</Modal.Header>
                   <Modal.Content image>
@@ -106,8 +107,26 @@ class PlanetLocations extends Component {
                   </Modal.Actions>
               </Modal>
 
-           </Card.Content>
-          </Card>
+              <Modal trigger={
+                <Button inverted color='violet'>
+                <Button.Content visible>Desc</Button.Content>
+                </Button>
+                }>
+              <Modal.Header>Select a Photo</Modal.Header>
+                <Modal.Content image>
+                  <Image wrapped size='medium' src={locationObj.image} />
+                  <Modal.Description>
+                  <Header>Default Profile Image</Header>
+                  <p>
+                    We've found the following gravatar image associated with your e-mail
+                    address.
+                  </p>
+                  <p>Is it okay to use this photo?</p>
+                 </Modal.Description>
+               </Modal.Content>
+              </Modal>
+              </Card.Content>
+             </Card>
           </Grid.Column>
 
       }) : 'The force is not with you.'
@@ -135,20 +154,3 @@ class PlanetLocations extends Component {
 }
 
 export default PlanetLocations;
-
-// <div className='ui two buttons'>
-//          <Button basic color='green'>
-//            Approve
-//          </Button>
-//          <Button basic color='red'>
-//            Decline
-//          </Button>
-//        </div>
-
-
-// <Modal trigger={
-//
-//   <Button animated><Button.Content visible>Board Ship</Button.Content>
-//   <Button.Content hidden>
-//     <Emoji symbol="🚀🚀🚀" label="spaceship"/>
-//   </Button.Content></Button>}>
