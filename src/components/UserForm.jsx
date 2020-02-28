@@ -35,7 +35,7 @@ class UserForm extends Component {
     let {username, password} = this.state
     let {formName} = this.props
     let path = window.location.pathname
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <form onSubmit={this.handleSubmit} className="ui form">
         <h1>{formName}</h1>

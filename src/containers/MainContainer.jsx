@@ -9,6 +9,7 @@ import {Switch, Route} from 'react-router'
 import {withRouter} from 'react-router-dom'
 
 
+
 class MainContainer extends Component {
 
   state = {
@@ -20,7 +21,8 @@ class MainContainer extends Component {
     // userValuesOfSearchForm:
     datesRange: '',
     numOfTravelers: '',
-    selectedPlanet: ''
+    selectedPlanet: '',
+    planets: []
   }
 
   componentDidMount() {
@@ -120,11 +122,12 @@ renderForm = (routerProps) => {
     })
   }
 
-  sendStateToMain = (selectedPlanet, datesRange, numOfTravelers) => {
+  sendStateToMain = (planets, selectedPlanet, datesRange, numOfTravelers) => {
     this.setState({
       selectedPlanet: selectedPlanet,
       datesRange: datesRange,
-      numOfTravelers: numOfTravelers
+      numOfTravelers: numOfTravelers,
+      planets: planets
     })
   }
 

@@ -11,10 +11,7 @@ class PlanetLocations extends Component {
 
   state = {
     planetObj: {},
-    open: false,
-    selectedPlanet: '',
-    datesRange: '',
-    numOfTravelers: ''
+    open: false
   }
 
   open = () => this.setState({ open: true })
@@ -28,10 +25,21 @@ class PlanetLocations extends Component {
     fetch(`http://localhost:4000/planets/${planetId}`)
     .then(r => r.json())
     .then(planetObj => {
-      // console.log(planetObj)
       this.setState({
         planetObj: planetObj
       })
+    })
+  }
+
+  renderPlanetNames = () => {
+    return this.props.stateFromMain.planets.map((planet) => {
+      // console.log(planet.name)
+      // return (
+      //   planet.name
+      // )
+      return (
+        planet ? planet.name : 'meow'
+      )
     })
   }
 
@@ -49,7 +57,7 @@ class PlanetLocations extends Component {
     </Button>
     }
     >
-    <Modal.Header>You're going to **insert location name here**</Modal.Header>
+    <Modal.Header>You're going to</Modal.Header>
       <Modal.Content>
         <p>That's everything!</p>
       </Modal.Content>
@@ -62,7 +70,8 @@ class PlanetLocations extends Component {
 
 
   renderLocations = (state) => {
-    let {selectedPlanet, datesRange, numOfTravelers} = this.props.stateFromMain
+    let {datesRange, numOfTravelers} = this.props.stateFromMain
+    let {name} = this.state.planetObj
       return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
            <Card centered={true}>
@@ -80,7 +89,7 @@ class PlanetLocations extends Component {
                       <Image wrapped size='medium' src='../baby_yoda.png' />
                     </div>
                     <Modal.Description >
-                    <h1>Planet: { selectedPlanet }</h1>
+                    <h1>Planet: { name }</h1>
                     <h2>Date Range: { datesRange }</h2>
                     <h3>Number of Travelers: { numOfTravelers }</h3>
                     </Modal.Description>
@@ -97,10 +106,11 @@ class PlanetLocations extends Component {
   }
 
 
-
   render() {
     // debugger;
-    // console.log(this.props.stateFromMain)
+    console.log(this.state)
+    // PLANETS ARRAY
+    // console.log(this.props.stateFromMain.datesRange)
       return (
         <div >
         <Grid centered columns={2}>

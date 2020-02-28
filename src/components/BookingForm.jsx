@@ -21,7 +21,8 @@ class BookingForm extends Component {
     planets: [],
     datesRange: '',
     numOfTravelers: '',
-    selectedPlanet: ''
+    selectedPlanet: '',
+    planetName: ''
   }
 
   handleSubmit = (evt, id) => {
@@ -37,9 +38,10 @@ class BookingForm extends Component {
     //
     fetch(`http://localhost:4000/planets`)
         .then(r => r.json())
-        .then((planetObj) => {
+        .then((planetArr) => {
+          // console.log(planetArr[0].name)
           this.setState({
-            planets: planetObj
+            planets: planetArr
           });
         })
   }
@@ -60,8 +62,8 @@ class BookingForm extends Component {
   }
 
   valuesFromBooking = () => {
-    let {selectedPlanet, datesRange, numOfTravelers} = this.state
-      this.props.sendStateToMain(selectedPlanet, datesRange, numOfTravelers)
+    let {planets, selectedPlanet, datesRange, numOfTravelers} = this.state
+      this.props.sendStateToMain(planets, selectedPlanet, datesRange, numOfTravelers)
   }
 
 
