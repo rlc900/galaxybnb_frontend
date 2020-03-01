@@ -26,7 +26,9 @@ class ReviewForm extends Component {
     })
     .then( r => r.json())
     .then((reviewObj) => {
-      this.props.addReview(reviewObj)
+      let locationId = this.props.locationId
+      this.props.addReview(reviewObj, locationId)
+      // console.log(locationId)
     })
   }
 

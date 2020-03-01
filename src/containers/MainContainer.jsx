@@ -145,6 +145,7 @@ renderForm = (routerProps) => {
 
   render() {
     // console.log('MAIN CONT STATE', this.state)
+    console.log(this.state.user)
     return (
       <div className='main-container'>
       <NavBar />

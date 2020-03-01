@@ -74,11 +74,13 @@ class PlanetLocations extends Component {
     </Modal>
   }
 
-
+  renderReviews = () => {
+    console.log(this.props.stateFromMain.user.reviews)
+  }
 
   renderLocations = (state) => {
     let {reviews} = this.props.stateFromMain.user
-    let {datesRange, numOfTravelers} = this.props.stateFromMain
+    let {datesRange, numOfTravelers, user} = this.props.stateFromMain
     let {name} = this.state.planetObj
       return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
@@ -121,7 +123,9 @@ class PlanetLocations extends Component {
                   <Modal.Description>
                   <Header></Header>
                   <p>
-                  {reviews.map(reviewObj => <Review key={reviewObj.id} review={reviewObj} />)}
+                  {reviews.map((review) =>
+                    review.reviewed_location_id === locationObj.id? <Review key={review.id} review={review} user={user}/> : null
+                  )}
                   </p>
                   <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id}/>
                  </Modal.Description>
@@ -137,9 +141,8 @@ class PlanetLocations extends Component {
 
   render() {
     // debugger;
-    // console.log(this.state)
-    // PLANETS ARRAY
-    // console.log(this.props.stateFromMain)
+    // console.log('STATE FROM PLANET_LOCATIONS', this.state)
+    console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
       return (
         <div >
         <Grid centered columns={2}>
@@ -159,7 +162,4 @@ class PlanetLocations extends Component {
 
 export default PlanetLocations;
 
-
-
-
-  // {reviews.map(reviewObj => <ReviewForm key={reviewObj.id} review={reviewObj} />)}
+  // {reviews.map(reviewObj => <Review key={reviewObj.id} locationId={locationObj.id} review={reviewObj} user={user}/>)}
