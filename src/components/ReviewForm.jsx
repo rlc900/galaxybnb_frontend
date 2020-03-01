@@ -24,7 +24,9 @@ class ReviewForm extends Component {
       })
     })
     .then( r => r.json())
-    .then(data => {console.log(data)})
+    .then((reviewObj) => {
+      this.props.addReview(reviewObj)
+    })
   }
 
   onChange = (evt) => {
@@ -47,7 +49,7 @@ class ReviewForm extends Component {
            placeholder='Write a review...'
          />
        </Form.Group>
-       <Form.Button type='submit'>Submit</Form.Button>
+       <Form.Button type='submit'>Submit Review</Form.Button>
        <Divider hidden />
      </Form>
 

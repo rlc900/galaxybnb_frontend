@@ -14,14 +14,26 @@ class MainContainer extends Component {
 
   state = {
     user: {
-      username: ''
-    },
+      username: '',
+      reviews: [],
+      reviewed_locations: [],
+      },
     token: '',
     error_message: '',
     planets: [],
     datesRange: '',
     numOfTravelers: '',
     selectedPlanet: ''
+  }
+
+  addReview = (reviewObj) => {
+    let modifiedReviewArr = [...this.state.user.reviews, reviewObj]
+      this.setState({
+        user: {
+          ...this.state.user,
+          reviews: modifiedReviewArr
+        }
+      });
   }
 
   componentDidMount() {
@@ -143,7 +155,7 @@ renderForm = (routerProps) => {
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} stateFromMain={this.state} />}/>
+        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} stateFromMain={this.state} addReview={this.addReview}/>}/>
 
 
       </Switch>

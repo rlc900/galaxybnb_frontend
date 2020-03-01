@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-react'
 import Emoji from './Emoji'
+import Review from './Review'
 import ReviewForm from './ReviewForm'
 // import BookingForm from './BookingForm'
 
@@ -76,6 +77,7 @@ class PlanetLocations extends Component {
 
 
   renderLocations = (state) => {
+    let {reviews} = this.props.stateFromMain.user
     let {datesRange, numOfTravelers} = this.props.stateFromMain
     let {name} = this.state.planetObj
       return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
@@ -119,10 +121,9 @@ class PlanetLocations extends Component {
                   <Modal.Description>
                   <Header></Header>
                   <p>
-                    We've found the following gravatar image associated with your e-mail
-                    address.
+                  {reviews.map(reviewObj => <Review key={reviewObj.id} review={reviewObj} />)}
                   </p>
-                  <ReviewForm token={this.props.stateFromMain.token}/>
+                  <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} />
                  </Modal.Description>
                </Modal.Content>
               </Modal>
@@ -138,7 +139,7 @@ class PlanetLocations extends Component {
     // debugger;
     // console.log(this.props)
     // PLANETS ARRAY
-    // console.log(this.props.stateFromMain.datesRange)
+    // console.log(this.props.stateFromMain.user.reviews)
       return (
         <div >
         <Grid centered columns={2}>
@@ -154,4 +155,11 @@ class PlanetLocations extends Component {
   }
 }
 
+
+
 export default PlanetLocations;
+
+
+
+
+  // {reviews.map(reviewObj => <ReviewForm key={reviewObj.id} review={reviewObj} />)}
