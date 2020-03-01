@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Divider, Form } from 'semantic-ui-react'
+import { Divider, Form } from 'semantic-ui-react'
 
 
 // let reviewUrl = `https://localhost:4000/reviews`
@@ -13,17 +13,21 @@ class ReviewForm extends Component {
     evt.preventDefault()
     // console.log('aye')
 
-    fetch(`https://localhost:4000/reviews`, {
+    fetch(`http://localhost:4000/reviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `bearer ${this.props.token}`
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        rating: this.state.rating
+      })
     })
+    .then( r => r.json())
+    .then(data => {console.log(data)})
   }
 
-  handleReviewOnChange = (evt) => {
+  onChange = (evt) => {
     let {name, value} = evt.target
       this.setState({
         [name]: value
@@ -39,11 +43,11 @@ class ReviewForm extends Component {
          <Form.Field
            label='Review'
            control='input'
-           input={this.handleReviewOnChange}
+           input type='text' name='rating' value={this.state.rating} onChange={this.onChange}
            placeholder='Write a review...'
          />
        </Form.Group>
-       <Button type='submit'>Submit</Button>
+       <Form.Button type='submit'>Submit</Form.Button>
        <Divider hidden />
      </Form>
 
