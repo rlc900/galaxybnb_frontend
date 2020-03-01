@@ -20,7 +20,8 @@ class ReviewForm extends Component {
         'Authorization': `bearer ${this.props.token}`
       },
       body: JSON.stringify({
-        rating: this.state.rating
+        rating: this.state.rating,
+        location_id: this.props.locationId
       })
     })
     .then( r => r.json())

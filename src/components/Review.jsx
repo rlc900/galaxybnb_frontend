@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Review = ({review}) => {
+// review = reviewObj passed down from PlanetLocations
+const Review = (props) => {
+  console.log(props)
   return(
-    <li>{review.rating}</li>
+    <li>{props.review.rating}</li>
   )
 };
 

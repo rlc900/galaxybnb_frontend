@@ -123,7 +123,7 @@ class PlanetLocations extends Component {
                   <p>
                   {reviews.map(reviewObj => <Review key={reviewObj.id} review={reviewObj} />)}
                   </p>
-                  <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} />
+                  <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id}/>
                  </Modal.Description>
                </Modal.Content>
               </Modal>
@@ -137,9 +137,9 @@ class PlanetLocations extends Component {
 
   render() {
     // debugger;
-    // console.log(this.props)
+    // console.log(this.state)
     // PLANETS ARRAY
-    // console.log(this.props.stateFromMain.user.reviews)
+    // console.log(this.props.stateFromMain)
       return (
         <div >
         <Grid centered columns={2}>
