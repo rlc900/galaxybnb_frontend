@@ -11,7 +11,7 @@ class Profile extends Component {
   }
 
   render() {
-    console.log(this.props.user);
+    // console.log(this.props.user);
     let {user} = this.props
     return (
       <div>

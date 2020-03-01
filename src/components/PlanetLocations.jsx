@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-react'
 import Emoji from './Emoji'
+import ReviewForm from './ReviewForm'
 // import BookingForm from './BookingForm'
 
 
@@ -112,16 +113,16 @@ class PlanetLocations extends Component {
                 <Button.Content visible>Desc</Button.Content>
                 </Button>
                 }>
-              <Modal.Header>Select a Photo</Modal.Header>
+              <Modal.Header>{locationObj.name}</Modal.Header>
                 <Modal.Content image>
                   <Image wrapped size='medium' src={locationObj.image} />
                   <Modal.Description>
-                  <Header>Default Profile Image</Header>
+                  <Header></Header>
                   <p>
                     We've found the following gravatar image associated with your e-mail
                     address.
                   </p>
-                  <p>Is it okay to use this photo?</p>
+                  <ReviewForm token={this.props.stateFromMain.token}/>
                  </Modal.Description>
                </Modal.Content>
               </Modal>
@@ -135,7 +136,7 @@ class PlanetLocations extends Component {
 
   render() {
     // debugger;
-    console.log(this.state)
+    // console.log(this.props)
     // PLANETS ARRAY
     // console.log(this.props.stateFromMain.datesRange)
       return (

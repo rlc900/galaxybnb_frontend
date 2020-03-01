@@ -18,11 +18,10 @@ class MainContainer extends Component {
     },
     token: '',
     error_message: '',
-    // userValuesOfSearchForm:
+    planets: [],
     datesRange: '',
     numOfTravelers: '',
-    selectedPlanet: '',
-    planets: []
+    selectedPlanet: ''
   }
 
   componentDidMount() {
@@ -144,7 +143,7 @@ renderForm = (routerProps) => {
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} stateFromMain={this.state}/>}/>
+        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} stateFromMain={this.state} />}/>
 
 
       </Switch>
