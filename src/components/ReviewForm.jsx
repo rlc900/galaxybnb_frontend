@@ -23,15 +23,23 @@ class ReviewForm extends Component {
     })
   }
 
+  handleReviewOnChange = (evt) => {
+    let {name, value} = evt.target
+      this.setState({
+        [name]: value
+      })
+  }
+
   render() {
     // console.log(this.props)
     return (
       <div>
-      <Form onSubmit={this.handleReviewFormSubmit}size='large' key='large'>
+      <Form onSubmit={this.handleReviewFormSubmit} size='large' key='large'>
        <Form.Group widths='equal'>
          <Form.Field
            label='Review'
            control='input'
+           input={this.handleReviewOnChange}
            placeholder='Write a review...'
          />
        </Form.Group>
