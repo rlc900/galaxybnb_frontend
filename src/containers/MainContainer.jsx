@@ -26,17 +26,7 @@ class MainContainer extends Component {
     planetObj: {}
   }
 
-  // addReview = (reviewObj) => {
-  //   let modifiedReviewArr = [...this.state.user.reviews, reviewObj]
-  //     this.setState({
-  //       user: {
-  //         ...this.state.user,
-  //         reviews: modifiedReviewArr
-  //       }
-  //     });
-  // }
   addReview = (reviewObj) => {
-
     // debugger
     let modifiedLocations = this.state.planetObj.locations.map((location) => {
         if (location.id === reviewObj.reviewed_location_id) {
@@ -48,6 +38,16 @@ class MainContainer extends Component {
         this.setState({
           planetObj: {...this.state.planetObj, locations: modifiedLocations}
         })
+  }
+
+  addBooking = (bookingObj) => {
+    let modifiedBookings = [...this.state.user.locationsBooked, bookingObj]
+    this.setState({
+      user: {...this.state.user, locationsBooked: modifiedBookings}
+    }, () => {
+      this.props.history.push('/profile')
+    })
+
   }
 
   componentDidMount() {
@@ -119,7 +119,7 @@ renderForm = (routerProps) => {
   }
 
   renderProfile = () => {
-    return <Profile handleDelete={this.handleDelete} token={this.state.token} user={this.state.user}/>
+    return <Profile handleDelete={this.handleDelete} stateFromMain={this.state}/>
   }
 
   renderLogout = (routerProps) => {
@@ -172,7 +172,7 @@ renderForm = (routerProps) => {
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} getPlanetObj={this.getPlanetObj} stateFromMain={this.state} addReview={this.addReview}/>}/>
+        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} addBooking={this.addBooking} getPlanetObj={this.getPlanetObj} stateFromMain={this.state} addReview={this.addReview}/>}/>
 
 
       </Switch>

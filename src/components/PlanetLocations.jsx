@@ -9,8 +9,8 @@ import ReviewForm from './ReviewForm'
 class PlanetLocations extends Component {
 
   state = {
-    // planetObj: {},
-    open: false
+    open: false,
+    location_id: 0
   }
 
   open = () => this.setState({ open: true })
@@ -40,6 +40,27 @@ class PlanetLocations extends Component {
     })
   }
 
+  handleClick = (evt) => {
+    console.log(this.state.location_id, this.props.stateFromMain.token)
+    fetch('http://localhost:4000/bookings', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `bearer ${this.props.stateFromMain.token}`
+      },
+      body: JSON.stringify({
+        location_id: this.state.location_id
+      })
+    })
+    .then(r => r.json())
+    // .then(console.log)
+    .then(bookingObj => {
+      this.props.addBooking(bookingObj)
+    })
+  }
+
+
+
   nestedModal = () => {
    const { open } = this.state
 
@@ -49,8 +70,8 @@ class PlanetLocations extends Component {
       onClose={this.close}
       size='small'
       trigger={
-    <Button circular={true} inverted color='violet'>
-      Travel <Icon name='right chevron' />
+    <Button circular={true} inverted color='violet' onClick={this.handleClick}>
+      Book Location <Icon name='right chevron' />
     </Button>
     }
     >
@@ -65,8 +86,13 @@ class PlanetLocations extends Component {
     </Modal>
   }
 
+  handleBooking = (id) => {
+    this.setState({
+      location_id: id
+    })
+  }
+
   renderLocations = (state) => {
-    // let {reviews} = this.props.stateFromMain
     let {datesRange, numOfTravelers} = this.props.stateFromMain
     let {name} = this.props.stateFromMain.planetObj
       return this.props.stateFromMain.planetObj.locations ? this.props.stateFromMain.planetObj.locations.map((locationObj) => {
@@ -78,7 +104,8 @@ class PlanetLocations extends Component {
 
               <Modal trigger={
                 <div>
-                <Button animated inverted color='violet' size='small'><Button.Content visible>Board Ship</Button.Content>
+                <Button animated inverted color='violet' size='small' onClick={() => this.handleBooking(locationObj.id)}
+                ><Button.Content visible>Board Ship</Button.Content>
                   <Button.Content hidden>
                     <Emoji symbol="🚀🚀🚀" label="spaceship"/>
                   </Button.Content></Button>
@@ -90,6 +117,7 @@ class PlanetLocations extends Component {
                     </div>
                     <Modal.Description >
                     <h1>Planet: { name }</h1>
+                    <h1>Location: {locationObj.name}</h1>
                     <h2>Date Range: { datesRange }</h2>
                     <h3>Number of Travelers: { numOfTravelers }</h3>
                     </Modal.Description>
@@ -129,6 +157,7 @@ class PlanetLocations extends Component {
     // debugger;
     // console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
     // console.log(this.props.stateFromMain);
+    console.log(this.state.location_id);
     console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain.error_message)
       return (
         <div >
