@@ -23,7 +23,8 @@ class MainContainer extends Component {
     planets: [],
     datesRange: '',
     numOfTravelers: '',
-    selectedPlanet: ''
+    selectedPlanet: '',
+    planetObj: {}
   }
 
   addReview = (reviewObj) => {
@@ -73,10 +74,6 @@ class MainContainer extends Component {
       )
     })
     .then(r => r.json())
-    // .then(console.log)
-    // .then(userData => {
-      // console.log(userData.error)})
-      // .then(console.log(this.props.history))
     .then(userData => {
       if (!userData.error) {
         localStorage.setItem('token', userData.token)
@@ -143,9 +140,14 @@ renderForm = (routerProps) => {
   }
 
 
+  callbackFunction = (childData) => {
+    this.setState({planetObj: childData})
+  }
+
+
   render() {
     // console.log('MAIN CONT STATE', this.state)
-    console.log(this.state.user)
+    console.log('STATE FROM MAIN_CONTAINER', this.state.planetObj)
     return (
       <div className='main-container'>
       <NavBar />
@@ -156,7 +158,7 @@ renderForm = (routerProps) => {
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} stateFromMain={this.state} addReview={this.addReview}/>}/>
+        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} parentCallback = {this.callbackFunction} stateFromMain={this.state} addReview={this.addReview}/>}/>
 
 
       </Switch>

@@ -3,10 +3,7 @@ import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-reac
 import Emoji from './Emoji'
 import Review from './Review'
 import ReviewForm from './ReviewForm'
-// import BookingForm from './BookingForm'
 
-
-// let locations_url = `http://localhost:4000/locations`
 
 
 class PlanetLocations extends Component {
@@ -19,6 +16,10 @@ class PlanetLocations extends Component {
   open = () => this.setState({ open: true })
   close = () => this.setState({ open: false })
 
+  sendData = (planetObj) => {
+    this.props.parentCallback(planetObj);
+  }
+
   componentDidMount() {
     // debugger;
     let planetId = this.props.match.params.id;
@@ -29,24 +30,16 @@ class PlanetLocations extends Component {
     .then(planetObj => {
       this.setState({
         planetObj: planetObj
-      })
+      }, this.sendData(planetObj))
     })
   }
 
   renderPlanetNames = () => {
     return this.props.stateFromMain.planets.map((planet) => {
-      // console.log(planet.name)
-      // return (
-      //   planet.name
-      // )
       return (
         planet ? planet.name : 'meow'
       )
     })
-  }
-
-  goToProfile = () => {
-
   }
 
   nestedModal = () => {
@@ -72,10 +65,6 @@ class PlanetLocations extends Component {
       </Button>
     </Modal.Actions>
     </Modal>
-  }
-
-  renderReviews = () => {
-    console.log(this.props.stateFromMain.user.reviews)
   }
 
   renderLocations = (state) => {
@@ -122,12 +111,8 @@ class PlanetLocations extends Component {
                   <Image wrapped size='medium' src={locationObj.image} />
                   <Modal.Description>
                   <Header></Header>
-                  <p>
-                  {reviews.map((review) =>
-                    review.reviewed_location_id === locationObj.id? <Review key={review.id} review={review} user={user}/> : null
-                  )}
-                  </p>
-                  <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id}/>
+
+                  <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id} error_message={this.props.stateFromMain.error_message}/>
                  </Modal.Description>
                </Modal.Content>
               </Modal>
@@ -141,8 +126,8 @@ class PlanetLocations extends Component {
 
   render() {
     // debugger;
-    // console.log('STATE FROM PLANET_LOCATIONS', this.state)
-    console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
+    console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
+    // console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
       return (
         <div >
         <Grid centered columns={2}>
@@ -162,4 +147,9 @@ class PlanetLocations extends Component {
 
 export default PlanetLocations;
 
-  // {reviews.map(reviewObj => <Review key={reviewObj.id} locationId={locationObj.id} review={reviewObj} user={user}/>)}
+//
+// <p>
+// {reviews.map((review) =>
+//   review.reviewed_location_id === locationObj.id? <Review key={review.id} review={review} user={user}/> : null
+// )}
+// </p>
