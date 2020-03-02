@@ -27,9 +27,10 @@ class ReviewForm extends Component {
     .then( r => r.json())
     // .then(console.log)
     .then((reviewObj) => {
-      let locationId = this.props.locationId
-      this.props.addReview(reviewObj, locationId)
-      // console.log(locationId)
+      // let locationId = this.props.locationId
+
+      this.props.addReview(reviewObj)
+      // console.log(reviewObj)
     })
   }
 
@@ -53,7 +54,7 @@ class ReviewForm extends Component {
            placeholder='Write a review...'
          />
        </Form.Group>
-       <h2>{this.props.error_message}</h2>
+    
        <Form.Button type='submit'>Submit Review</Form.Button>
 
        <Divider hidden />

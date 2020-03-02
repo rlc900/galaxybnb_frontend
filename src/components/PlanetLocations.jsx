@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-react'
 import Emoji from './Emoji'
-import Review from './Review'
+// import Review from './Review'
 import ReviewForm from './ReviewForm'
 
 
@@ -9,7 +9,7 @@ import ReviewForm from './ReviewForm'
 class PlanetLocations extends Component {
 
   state = {
-    planetObj: {},
+    // planetObj: {},
     open: false
   }
 
@@ -17,7 +17,7 @@ class PlanetLocations extends Component {
   close = () => this.setState({ open: false })
 
   sendData = (planetObj) => {
-    this.props.parentCallback(planetObj);
+    this.props.getPlanetObj(planetObj);
   }
 
   componentDidMount() {
@@ -28,9 +28,7 @@ class PlanetLocations extends Component {
     fetch(`http://localhost:4000/planets/${planetId}`)
     .then(r => r.json())
     .then(planetObj => {
-      this.setState({
-        planetObj: planetObj
-      }, this.sendData(planetObj))
+      this.sendData(planetObj)
     })
   }
 
@@ -68,10 +66,10 @@ class PlanetLocations extends Component {
   }
 
   renderLocations = (state) => {
-    let {reviews} = this.props.stateFromMain.user
-    let {datesRange, numOfTravelers, user} = this.props.stateFromMain
-    let {name} = this.state.planetObj
-      return this.state.planetObj.locations ? this.state.planetObj.locations.map((locationObj) => {
+    // let {reviews} = this.props.stateFromMain
+    let {datesRange, numOfTravelers} = this.props.stateFromMain
+    let {name} = this.props.stateFromMain.planetObj
+      return this.props.stateFromMain.planetObj.locations ? this.props.stateFromMain.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
            <Card centered={true}>
             <Image src={locationObj.image} wrapped ui={false} />
@@ -111,8 +109,11 @@ class PlanetLocations extends Component {
                   <Image wrapped size='medium' src={locationObj.image} />
                   <Modal.Description>
                   <Header></Header>
-
+                  {locationObj.reviews.map((review) => {
+                    return <p>{review.rating}</p>
+                  })}
                   <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id} error_message={this.props.stateFromMain.error_message}/>
+
                  </Modal.Description>
                </Modal.Content>
               </Modal>
@@ -126,13 +127,14 @@ class PlanetLocations extends Component {
 
   render() {
     // debugger;
-    console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
-    // console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
+    // console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
+    // console.log(this.props.stateFromMain);
+    console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain.error_message)
       return (
         <div >
         <Grid centered columns={2}>
         <Grid.Column>
-          <Image src={this.state.planetObj.image} />
+          <Image src={this.props.stateFromMain.planetObj.image} />
         </Grid.Column>
         <Grid.Row centered columns={4}>
         </Grid.Row>
@@ -146,10 +148,3 @@ class PlanetLocations extends Component {
 
 
 export default PlanetLocations;
-
-//
-// <p>
-// {reviews.map((review) =>
-//   review.reviewed_location_id === locationObj.id? <Review key={review.id} review={review} user={user}/> : null
-// )}
-// </p>

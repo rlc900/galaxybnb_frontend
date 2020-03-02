@@ -15,8 +15,7 @@ class MainContainer extends Component {
   state = {
     user: {
       username: '',
-      reviews: [],
-      reviewed_locations: [],
+      reviewed_locations: []
       },
     token: '',
     error_message: '',
@@ -27,14 +26,28 @@ class MainContainer extends Component {
     planetObj: {}
   }
 
+  // addReview = (reviewObj) => {
+  //   let modifiedReviewArr = [...this.state.user.reviews, reviewObj]
+  //     this.setState({
+  //       user: {
+  //         ...this.state.user,
+  //         reviews: modifiedReviewArr
+  //       }
+  //     });
+  // }
   addReview = (reviewObj) => {
-    let modifiedReviewArr = [...this.state.user.reviews, reviewObj]
-      this.setState({
-        user: {
-          ...this.state.user,
-          reviews: modifiedReviewArr
+
+    // debugger
+    let modifiedLocations = this.state.planetObj.locations.map((location) => {
+        if (location.id === reviewObj.reviewed_location_id) {
+          return {...location, reviews: [...location.reviews, reviewObj]}
+        } else {
+          return location
         }
-      });
+      })
+        this.setState({
+          planetObj: {...this.state.planetObj, locations: modifiedLocations}
+        })
   }
 
   componentDidMount() {
@@ -111,7 +124,8 @@ renderForm = (routerProps) => {
 
   renderLogout = (routerProps) => {
     this.setState({
-      user: {}
+      user: {},
+      token: ''
     })
     localStorage.clear()
     routerProps.history.push('/home')
@@ -140,14 +154,14 @@ renderForm = (routerProps) => {
   }
 
 
-  callbackFunction = (childData) => {
-    this.setState({planetObj: childData})
+  getPlanetObj = (newPlanetObj) => {
+    this.setState({planetObj: newPlanetObj})
   }
 
 
   render() {
-    // console.log('MAIN CONT STATE', this.state)
-    console.log('STATE FROM MAIN_CONTAINER', this.state.planetObj)
+    console.log('MAIN CONT STATE', this.state)
+    console.log('STATE FROM MAIN_CONTAINER', this.state)
     return (
       <div className='main-container'>
       <NavBar />
@@ -158,7 +172,7 @@ renderForm = (routerProps) => {
         <Route path='/profile' render={this.renderProfile}/>
         <Route path='/logout' render={this.renderLogout}/>
         <Route path='/update' render={this.renderForm}/>
-        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} parentCallback = {this.callbackFunction} stateFromMain={this.state} addReview={this.addReview}/>}/>
+        <Route path='/places/:id' render={(props) => <PlanetLocations {...props} getPlanetObj={this.getPlanetObj} stateFromMain={this.state} addReview={this.addReview}/>}/>
 
 
       </Switch>
