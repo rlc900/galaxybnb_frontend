@@ -42,6 +42,9 @@ class PlanetLocations extends Component {
 
   handleClick = (evt) => {
     console.log(this.state.location_id, this.props.stateFromMain.token)
+
+
+
     fetch('http://localhost:4000/bookings', {
       method: 'POST',
       headers: {
@@ -49,7 +52,9 @@ class PlanetLocations extends Component {
         'Authorization': `bearer ${this.props.stateFromMain.token}`
       },
       body: JSON.stringify({
-        location_id: this.state.location_id
+        location_id: this.state.location_id,
+        datesRange: this.props.stateFromMain.datesRange,
+        numOfTravelers: this.props.stateFromMain.numOfTravelers
       })
     })
     .then(r => r.json())

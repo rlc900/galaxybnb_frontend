@@ -71,7 +71,7 @@ class BookingForm extends Component {
     // console.log(this.state)
     // console.log(this.props)
     return (
-
+      <div className='booking-form'>
       <Form onSubmit={this.handleSubmit}>
 
         <Form.Group widths='equal'>
@@ -104,9 +104,12 @@ class BookingForm extends Component {
 
         <Form.Button inverted color='violet'>Submit</Form.Button>
       </Form>
+      </div>
     );
   }
 
 }
 
 export default BookingForm;
+
+// style={{ 'background-color': 'black', height: '700px' }}

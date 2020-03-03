@@ -9,7 +9,7 @@ class Profile extends Component {
   }
 
   renderBookedLocations = () => {
-    let {datesRange, numOfTravelers} = this.props.stateFromMain
+    // let {datesRange, numOfTravelers} = this.props.stateFromMain
 
     if (this.props.stateFromMain.user.locationsBooked) {
       return this.props.stateFromMain.user.locationsBooked.map((booked_location) => {
@@ -18,7 +18,7 @@ class Profile extends Component {
     <Card.Content>
       <Card.Header>{booked_location.name}</Card.Header>
       <Card.Meta>
-        <span className='date'>{datesRange}</span>
+        <span className='date'>{booked_location.datesRange}</span>
       </Card.Meta>
       <Card.Description>
         Card Descriptions might go here if i have time to come up with them??
@@ -26,7 +26,7 @@ class Profile extends Component {
     </Card.Content>
     <Card.Content extra>
         <Icon name='user' />
-        {numOfTravelers}
+        {booked_location.numOfTravelers}
     </Card.Content>
   </Card>)
       })
