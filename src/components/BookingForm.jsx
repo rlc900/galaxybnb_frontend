@@ -15,23 +15,61 @@ let numberOptions = [
   {text: '9', value: '9'},
   {text: '10', value: '10'}
 ]
+
+const initialState = {
+  planets: [],
+  datesRange: '',
+  numOfTravelers: '',
+  selectedPlanet: '',
+  planetError: '',
+  datesError: '',
+  travelersError: ''
+}
+
+
 class BookingForm extends Component {
 
-  state = {
-    planets: [],
-    datesRange: '',
-    numOfTravelers: '',
-    selectedPlanet: '',
-    planetName: ''
+  state = initialState
+
+  validate = () => {
+    let planetError = ''
+    let datesError = ''
+    let travelersError = ''
+    let {selectedPlanet, datesRange, numOfTravelers} = this.state
+    let isValid = true
+
+    if (!selectedPlanet) {
+      planetError = 'Please select a planet!'
+      isValid = false
+    }
+
+    if (!datesRange) {
+      datesError = 'Please select a date!'
+      isValid = false
+    }
+
+    if (!numOfTravelers) {
+      travelersError = 'Please select a number of travelers!'
+      isValid = false
+    }
+
+    // if (selectedPlanet || datesRange || numOfTravelers) {
+      this.setState({planetError, datesError, travelersError})
+      return isValid
+    // }
+    // return true
   }
 
   handleSubmit = (evt, id) => {
     evt.preventDefault()
+    const isValid = this.validate()
     let {selectedPlanet} = this.state
-    // Takes user to page where they can select
-    // places to rent
-    this.props.history.push(`/places/${selectedPlanet}`)
-    this.valuesFromBooking()
+
+    if (isValid) {
+      this.setState(initialState)
+      this.props.history.push(`/places/${selectedPlanet}`)
+      this.valuesFromBooking()
+    }
   }
 
   componentDidMount() {
@@ -68,8 +106,8 @@ class BookingForm extends Component {
 
 
   render() {
-    // console.log(this.state)
-    // console.log(this.props)
+    console.log(this.state)
+    // console.log(this.props.stateFromMain)
     return (
       <div className='booking-form'>
       <Form onSubmit={this.handleSubmit}>
@@ -84,6 +122,7 @@ class BookingForm extends Component {
             placeholder='Planets'
           />
         </Form.Group>
+        <div>{this.state.planetError}</div>
         <DatesRangeInput
          name="datesRange"
          placeholder="From - To"

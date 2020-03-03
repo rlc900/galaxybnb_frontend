@@ -13,7 +13,7 @@ class Home extends Component {
     return (
       <div className='home'>
       <Header as='h1' inverted color ='violet'>Galaxybnb</Header>
-      <BookingForm history={this.props.history} sendStateToMain={sendStateToMain}/>
+      <BookingForm history={this.props.history} sendStateToMain={sendStateToMain} stateFromMain={this.props.stateFromMain}/>
       </div>
     );
   }
