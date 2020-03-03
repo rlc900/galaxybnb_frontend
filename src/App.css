@@ -40,11 +40,24 @@ h1.ui.header {
 
 }
 
-/* .ui.inverted.violet.header {
+/* LOGIN FORM START */
+.ui.header {
   font-family: 'Star Jedi', serif;
-  font-size: 400%;
   color: white;
-} */
+}
+
+.ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  font-size: 200%;
+}
+
+.ui.form input[type=text],.ui.form input[type=password] {
+  width: 50%;
+}
+
+.ui.form {
+    text-align: center;
+}
+/* LOGIN FORM END */
 
 .ui.form .field>.selection.dropdown {
   width: 14%
@@ -69,6 +82,12 @@ h1.ui.header {
 .ui.form .field>label {
   font-family: 'Star Jedi', arial;
 }
+
+.dateForm {
+  margin-left: 78.5vh !important;
+}
+
+
 
 
 

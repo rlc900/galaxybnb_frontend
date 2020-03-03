@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 class NavBar extends Component {
 
@@ -26,7 +26,7 @@ class NavBar extends Component {
       )
     } else {
       return (
-        <Segment inverted>
+
           <Menu inverted pointing secondary>
            <Menu.Item>
             <Link to ='/home'>Home</Link>
@@ -38,7 +38,7 @@ class NavBar extends Component {
             <Link to ='/login'>Login</Link>
            </Menu.Item>
          </Menu>
-         </Segment>
+
       )
     }
   }

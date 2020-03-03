@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 
 class UserForm extends Component {
 
@@ -38,9 +38,9 @@ class UserForm extends Component {
     // console.log(this.props)
     return (
       <form onSubmit={this.handleSubmit} className="ui form">
-        <h1>{formName}</h1>
+      <Header>{formName}</Header>
           <div className='field'>
-            <label htmlFor='username'>Username:</label>
+            <label htmlFor='username'>username:</label>
               <input type='text' autoComplete='off'onChange={this.handleOnChange} value={username} name='username'/>
           </div>
           <div className='field'>

@@ -126,7 +126,7 @@ class BookingForm extends Component {
         <div>{this.state.planetError}</div>
         <Form.Group >
         < DatesRangeInput
-        align='center'
+         className='dateForm'
          name="datesRange"
          label="From - To"
          placeholder="From - To"
