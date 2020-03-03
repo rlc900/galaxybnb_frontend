@@ -11,8 +11,8 @@ class Home extends Component {
     // console.log('PROPS FROM HOME', this.props)
     let {sendStateToMain} = this.props
     return (
-      <div className='home'>
-      <Header as='h1' inverted color ='violet'>Galaxybnb</Header>
+      <div className='home' >
+      <Header as='h1' align='center'>Galaxybnb</Header>
       <BookingForm history={this.props.history} sendStateToMain={sendStateToMain} stateFromMain={this.props.stateFromMain}/>
       </div>
     );

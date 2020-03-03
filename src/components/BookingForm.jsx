@@ -109,13 +109,14 @@ class BookingForm extends Component {
     console.log(this.state)
     // console.log(this.props.stateFromMain)
     return (
-      <div className='booking-form'>
+      <div className='booking-form' align='center'>
+
       <Form onSubmit={this.handleSubmit}>
 
         <Form.Group widths='equal'>
         <Form.Field
             control={Select}
-            label='Planets'
+            label='Choose a Planet'
             options={this.formatOptions()}
             onChange={this.handleChange}
             name={'selectedPlanet'}
@@ -123,13 +124,18 @@ class BookingForm extends Component {
           />
         </Form.Group>
         <div>{this.state.planetError}</div>
-        <DatesRangeInput
+        <Form.Group >
+        < DatesRangeInput
+        align='center'
          name="datesRange"
+         label="From - To"
          placeholder="From - To"
          value={this.state.datesRange}
          iconPosition="left"
          onChange={this.handleChange}
         />
+
+        </Form.Group>
         <Form.Group widths='equal'>
         <Form.Select
           fluid
@@ -143,6 +149,7 @@ class BookingForm extends Component {
 
         <Form.Button inverted color='violet'>Submit</Form.Button>
       </Form>
+
       </div>
     );
   }
@@ -150,5 +157,3 @@ class BookingForm extends Component {
 }
 
 export default BookingForm;
-
-// style={{ 'background-color': 'black', height: '700px' }}

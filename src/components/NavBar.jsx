@@ -8,7 +8,6 @@ class NavBar extends Component {
     if (localStorage.token) {
       return (
         <div>
-        <Segment inverted>
           <Menu inverted pointing secondary>
            <Menu.Item>
             <Link to ='/home'>Home</Link>
@@ -17,13 +16,12 @@ class NavBar extends Component {
             <Link to ='/profile'>Profile</Link>
            </Menu.Item>
            <Menu.Item>
-            <Link to ='/update'>Update Username</Link>
+            <Link to ='/update'>update username</Link>
            </Menu.Item>
            <Menu.Item>
             <Link to ='/logout'>Logout</Link>
            </Menu.Item>
          </Menu>
-         </Segment>
        </div>
       )
     } else {
