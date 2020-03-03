@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-react'
 import Emoji from './Emoji'
-// import Review from './Review'
+
 import ReviewForm from './ReviewForm'
 
 
@@ -168,7 +168,7 @@ class PlanetLocations extends Component {
         <div >
         <Grid centered columns={2}>
         <Grid.Column>
-          <Image src={this.props.stateFromMain.planetObj.image} />
+          <Image src='../../hoth.png' />
         </Grid.Column>
         <Grid.Row centered columns={4}>
         </Grid.Row>
@@ -182,3 +182,4 @@ class PlanetLocations extends Component {
 
 
 export default PlanetLocations;
+  // <Image src={this.props.stateFromMain.planetObj.image} />

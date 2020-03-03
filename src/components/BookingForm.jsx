@@ -134,11 +134,10 @@ class BookingForm extends Component {
          iconPosition="left"
          onChange={this.handleChange}
         />
-
         </Form.Group>
+      <div>{this.state.datesError}</div>
         <Form.Group widths='equal'>
         <Form.Select
-          fluid
           label='How many travelers?'
           options={numberOptions}
           onChange={this.handleChange}
@@ -146,8 +145,8 @@ class BookingForm extends Component {
           placeholder='Travelers'
         />
       </Form.Group>
-
-        <Form.Button inverted color='violet'>Submit</Form.Button>
+        <div color='red'>{this.state.travelersError}</div>
+        <Form.Button inverted color='red'>Submit</Form.Button>
       </Form>
 
       </div>

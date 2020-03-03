@@ -1,5 +1,5 @@
 .App {
-
+overflow-y: auto;
 }
 
 .App-logo {
@@ -51,13 +51,21 @@ h1.ui.header {
 }
 
 .ui.form input[type=text],.ui.form input[type=password] {
-  width: 50%;
+  width: 20%;
 }
 
 .ui.form {
     text-align: center;
 }
 /* LOGIN FORM END */
+
+.ui.fluid.dropdown {
+  margin-left: 78.5vh;
+    /* display: block;
+    width: 100%;
+    min-width: 0;
+ */
+}
 
 .ui.form .field>.selection.dropdown {
   width: 14%
@@ -137,7 +145,8 @@ h1.ui.header {
 }
 
 .stars {
-  background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+  background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) no-repeat center center fixed;
+  background-size: cover;
   z-index:0;
 }
 

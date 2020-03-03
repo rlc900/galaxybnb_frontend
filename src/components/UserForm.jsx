@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react'
+import { Header, Form } from 'semantic-ui-react'
 
 class UserForm extends Component {
 
@@ -52,7 +52,7 @@ class UserForm extends Component {
             </>
             }
          </div>
-        <button type="submit" className="ui button">Submit</button>
+        <Form.Button inverted color='red'>Submit</Form.Button>
         <h2>{this.props.error}</h2>
       </form>
     );
