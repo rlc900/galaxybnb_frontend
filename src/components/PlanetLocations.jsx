@@ -41,27 +41,31 @@ class PlanetLocations extends Component {
   }
 
   handleClick = (evt) => {
-    console.log(this.state.location_id, this.props.stateFromMain.token)
+    // console.log(this.state.location_id, this.props.stateFromMain.token)
+    // let {token} = this.props.stateFromMain
 
-
-
-    fetch('http://localhost:4000/bookings', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'Authorization': `bearer ${this.props.stateFromMain.token}`
-      },
-      body: JSON.stringify({
-        location_id: this.state.location_id,
-        datesRange: this.props.stateFromMain.datesRange,
-        numOfTravelers: this.props.stateFromMain.numOfTravelers
+    // if (token) {
+      fetch('http://localhost:4000/bookings', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': `bearer ${this.props.stateFromMain.token}`
+        },
+        body: JSON.stringify({
+          location_id: this.state.location_id,
+          datesRange: this.props.stateFromMain.datesRange,
+          numOfTravelers: this.props.stateFromMain.numOfTravelers
+        })
       })
-    })
-    .then(r => r.json())
-    // .then(console.log)
-    .then(bookingObj => {
-      this.props.addBooking(bookingObj)
-    })
+      .then(r => r.json())
+      // .then(console.log)
+      .then(bookingObj => {
+        this.props.addBooking(bookingObj)
+      })
+    // } else {
+    //
+    // }
+
   }
 
 
@@ -75,7 +79,7 @@ class PlanetLocations extends Component {
       onClose={this.close}
       size='small'
       trigger={
-    <Button circular={true} inverted color='violet' onClick={this.handleClick}>
+    <Button disabled={ this.props.stateFromMain.token? false : true} circular={true} inverted color='violet' onClick={this.handleClick}>
       Book Location <Icon name='right chevron' />
     </Button>
     }
