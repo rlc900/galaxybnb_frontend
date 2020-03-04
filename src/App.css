@@ -59,6 +59,15 @@ h1.ui.header {
 }
 /* LOGIN FORM END */
 
+/* PROFILE START */
+
+h2 {
+  color: #ff695e;
+  text-align: center;
+}
+
+/* PROFILE END */
+
 .ui.fluid.dropdown {
   margin-left: 78.5vh;
     /* display: block;

@@ -133,6 +133,7 @@ class BookingForm extends Component {
          value={this.state.datesRange}
          iconPosition="left"
          onChange={this.handleChange}
+         autoComplete='off'
         />
         </Form.Group>
       <div>{this.state.datesError}</div>

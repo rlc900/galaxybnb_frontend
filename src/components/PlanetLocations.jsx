@@ -161,14 +161,14 @@ class PlanetLocations extends Component {
   render() {
     // debugger;
     // console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
-    // console.log(this.props.stateFromMain);
+    console.log(this.props.stateFromMain.planetObj.image);
     console.log(this.state.location_id);
     console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain.error_message)
       return (
         <div >
         <Grid centered columns={2}>
         <Grid.Column>
-          <Image src='../../hoth.png' />
+          <Image src={this.props.stateFromMain.planetObj.image} />
         </Grid.Column>
         <Grid.Row centered columns={4}>
         </Grid.Row>
