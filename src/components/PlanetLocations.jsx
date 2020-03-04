@@ -81,7 +81,9 @@ class PlanetLocations extends Component {
   fetch('http://localhost:4000/charges', config)
     .then(res => res.json())
     .then(charge => {
-      this.handleClick()
+      if (charge) {
+        this.handleClick()
+      }
     })
 
   }
@@ -89,24 +91,24 @@ class PlanetLocations extends Component {
   nestedModal = () => {
    const { open } = this.state
 
-    return <Modal
+    return  <Modal
       open={open}
       onOpen={this.open}
       onClose={this.close}
       size='small'
       trigger={
-    <StripeCheckout
-    token={this.onToken}
-    stripeKey={process.env.REACT_APP_STRIPE_API_KEY}>
-    <Button
-    disabled={ this.props.stateFromMain.token ? false : true}
-    circular={true}
-    inverted color='violet'
-    >
-    Book Location <Icon name='right chevron' />
-    </Button>
-    </StripeCheckout>
-    }
+        <StripeCheckout
+          token={this.onToken}
+          stripeKey={process.env.REACT_APP_STRIPE_API_KEY}>
+        <Button
+          disabled={ this.props.stateFromMain.token ? false : true}
+          circular={true}
+          inverted color='violet'
+        >
+        Book Location <Icon name='right chevron' />
+        </Button>
+      </StripeCheckout>
+      }
     >
     </Modal>
   }

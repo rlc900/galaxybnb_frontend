@@ -44,7 +44,7 @@ class ReviewForm extends Component {
   render() {
     // console.log(this.props)
     return (
-      <div>
+      <div className='review-form'>
       <Form onSubmit={this.handleReviewFormSubmit} size='large' key='large'>
        <Form.Group widths='equal'>
          <Form.Field
@@ -54,7 +54,7 @@ class ReviewForm extends Component {
            placeholder='Write a review...'
          />
        </Form.Group>
-    
+
        <Form.Button type='submit'>Submit Review</Form.Button>
 
        <Divider hidden />

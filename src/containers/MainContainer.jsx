@@ -44,6 +44,7 @@ class MainContainer extends Component {
     let modifiedBookings = [...this.state.user.locationsBooked, bookingObj]
     this.setState({
       user: {...this.state.user, locationsBooked: modifiedBookings}
+
     }, () => {
       this.props.history.push('/profile')
     })

@@ -51,7 +51,7 @@ h1.ui.header {
 }
 
 .ui.form input[type=text],.ui.form input[type=password] {
-  width: 20%;
+  width: 100%;
 }
 
 .ui.form {
@@ -67,6 +67,11 @@ h2 {
 }
 
 /* PROFILE END */
+
+label['Review'] {
+  width: 100vh;
+}
+
 
 .ui.fluid.dropdown {
   margin-left: 78.5vh;
@@ -104,6 +109,10 @@ h2 {
   margin-left: 78.5vh !important;
 }
 
+img.ui.image {
+  display: block;
+  opacity: 0.5;
+}
 
 
 
