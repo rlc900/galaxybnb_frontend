@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-react'
 import Emoji from './Emoji'
-
 import ReviewForm from './ReviewForm'
-
+import StripeCheckout from 'react-stripe-checkout'
 
 
 class PlanetLocations extends Component {
@@ -62,13 +61,30 @@ class PlanetLocations extends Component {
       .then(bookingObj => {
         this.props.addBooking(bookingObj)
       })
-    // } else {
-    //
-    // }
-
   }
 
+  onToken = (token) => {
+    const charge = {
+      token: token.id
+    };
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        charge: charge,
+        price:  1999
+      })
+  }
 
+  fetch('http://localhost:4000/charges', config)
+    .then(res => res.json())
+    .then(charge => {
+      this.handleClick()
+    })
+
+  }
 
   nestedModal = () => {
    const { open } = this.state
@@ -79,19 +95,19 @@ class PlanetLocations extends Component {
       onClose={this.close}
       size='small'
       trigger={
-    <Button disabled={ this.props.stateFromMain.token? false : true} circular={true} inverted color='violet' onClick={this.handleClick}>
-      Book Location <Icon name='right chevron' />
+    <StripeCheckout
+    token={this.onToken}
+    stripeKey={process.env.REACT_APP_STRIPE_API_KEY}>
+    <Button
+    disabled={ this.props.stateFromMain.token ? false : true}
+    circular={true}
+    inverted color='violet'
+    >
+    Book Location <Icon name='right chevron' />
     </Button>
+    </StripeCheckout>
     }
     >
-    <Modal.Header>You're going to</Modal.Header>
-      <Modal.Content>
-        <p>That's everything!</p>
-      </Modal.Content>
-    <Modal.Actions>
-      <Button color='black' icon='check' content='Profile' onClick={this.goToProfile} >
-      </Button>
-    </Modal.Actions>
     </Modal>
   }
 
@@ -186,4 +202,14 @@ class PlanetLocations extends Component {
 
 
 export default PlanetLocations;
-  // <Image src={this.props.stateFromMain.planetObj.image} />
+// <Modal
+//   open={open}
+//   onOpen={this.open}
+//   onClose={this.close}
+//   size='small'
+//   trigger={
+// <Button disabled={ this.props.stateFromMain.token ? false : true} circular={true} inverted color='violet' onClick={this.handleClick}>
+//   Book Location <Icon name='right chevron' />
+// </Button>
+// }
+// >
