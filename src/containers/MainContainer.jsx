@@ -77,7 +77,7 @@ class MainContainer extends Component {
 
   handleSubmit = (userInfo, route, method) => {
     // console.log(route)
-    console.log('Form has been submitted')
+    // console.log('Form has been submitted')
     fetch(`http://localhost:4000${route}`, {
       method: method,
       headers: {
@@ -161,13 +161,13 @@ renderForm = (routerProps) => {
 
 
   render() {
-    console.log('MAIN CONT STATE', this.state)
-    console.log('STATE FROM MAIN_CONTAINER', this.state)
+    // console.log('MAIN CONT STATE', this.state)
+    // console.log('STATE FROM MAIN_CONTAINER', this.state)
     return (
       <div className='main-container'>
       <NavBar />
       <Switch>
-        <Route exact path='/home' render={(props) => <Home {...props} sendStateToMain={this.sendStateToMain} stateFromMain={this.state}/>}/>
+        <Route path={['/', '/home']} render={(props) => <Home {...props} sendStateToMain={this.sendStateToMain} stateFromMain={this.state}/>}/>
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>

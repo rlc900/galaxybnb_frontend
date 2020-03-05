@@ -98,6 +98,10 @@ img.ui.image {
 
 /* END OF PLANETLOCATIONS */
 
+
+
+/* START OF BOOKING FORM */
+
 .ui.form .field>.selection.dropdown {
   width: 14%
 }
@@ -125,7 +129,9 @@ img.ui.image {
 }
 
 .dateForm {
-  margin-left: 78.5vh !important;
+   display: block !important;
+   margin-left: auto !important;
+   margin-right: auto !important;
 }
 
 .div-error {

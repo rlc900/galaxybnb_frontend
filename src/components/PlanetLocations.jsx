@@ -3,6 +3,7 @@ import { Grid, Image, Card, Button, Icon, Modal, Header } from 'semantic-ui-reac
 import Emoji from './Emoji'
 import ReviewForm from './ReviewForm'
 import StripeCheckout from 'react-stripe-checkout'
+// import Review from './Review'
 
 
 class PlanetLocations extends Component {
@@ -125,7 +126,7 @@ class PlanetLocations extends Component {
       return this.props.stateFromMain.planetObj.locations ? this.props.stateFromMain.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
           <Card.Group >
-           <Card centered={true} stackable={true} itemsPerRow={3}>
+           <Card centered={true} stackable='true' itemsPerRow={3}>
 
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>
@@ -167,8 +168,10 @@ class PlanetLocations extends Component {
                   <Modal.Description>
                   <Header></Header>
                   {locationObj.reviews.map((review) => {
-                    return <p>{review.rating}</p>
+                    return <p>{review.rating} - {this.props.stateFromMain.user.username}</p>
                   })}
+
+
                   <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id} error_message={this.props.stateFromMain.error_message}/>
 
                  </Modal.Description>
@@ -187,8 +190,8 @@ class PlanetLocations extends Component {
     // debugger;
     // console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
     console.log(this.props.stateFromMain.planetObj.image);
-    console.log(this.state.location_id);
-    console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain.error_message)
+    console.log(this.state);
+    console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
       return (
         <div >
         <Grid centered columns={2}>
@@ -207,14 +210,3 @@ class PlanetLocations extends Component {
 
 
 export default PlanetLocations;
-// <Modal
-//   open={open}
-//   onOpen={this.open}
-//   onClose={this.close}
-//   size='small'
-//   trigger={
-// <Button disabled={ this.props.stateFromMain.token ? false : true} circular={true} inverted color='violet' onClick={this.handleClick}>
-//   Book Location <Icon name='right chevron' />
-// </Button>
-// }
-// >
