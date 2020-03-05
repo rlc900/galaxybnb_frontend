@@ -124,8 +124,8 @@ class PlanetLocations extends Component {
     let {name} = this.props.stateFromMain.planetObj
       return this.props.stateFromMain.planetObj.locations ? this.props.stateFromMain.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
-          <Card.Group>
-           <Card centered={true} stackable={true}>
+          <Card.Group >
+           <Card centered={true} stackable={true} itemsPerRow={3}>
 
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>

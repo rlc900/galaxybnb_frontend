@@ -81,18 +81,22 @@ label['Review'] {
  */
 }
 
-/* CARDS IN PLANETLOCATIONS */
+/* PLANETLOCATIONS */
 .ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui) {
     font-weight: 700;
     font-size: 1.28571429em;
-    margin-top: -.21425em;
+    margin-top: 1em;
     line-height: 1.28571429em;
     font-family: 'Star Jedi', serif;
 }
 
+img.ui.image {
+  display: block;
+  opacity: 0.5;
+}
 
 
-/* END OF CARD */
+/* END OF PLANETLOCATIONS */
 
 .ui.form .field>.selection.dropdown {
   width: 14%
@@ -124,10 +128,12 @@ label['Review'] {
   margin-left: 78.5vh !important;
 }
 
-img.ui.image {
-  display: block;
-  opacity: 0.5;
+.div-error {
+  color: #ff695e;
+  font-family: 'Star Jedi', serif;
 }
+/* END OF BOOKING FORM */
+
 
 
 

@@ -115,7 +115,7 @@ renderForm = (routerProps) => {
     } else if (pathname === '/login') {
       return <UserForm formName='Login' handleFormSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     }  else if (routerProps.location.pathname === '/update') {
-      return <UserForm formName='Update Username' handleFormSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
+      return <UserForm formName='update username' handleFormSubmit={this.handleSubmit} error={error_message} user={user} {...routerProps}/>
     }
   }
 

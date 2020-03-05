@@ -123,7 +123,7 @@ class BookingForm extends Component {
             placeholder='Planets'
           />
         </Form.Group>
-        <div>{this.state.planetError}</div>
+        <div className='div-error' color='red'>{this.state.planetError}</div>
         <Form.Group >
         < DatesRangeInput
          className='dateForm'
@@ -136,7 +136,7 @@ class BookingForm extends Component {
          autoComplete='off'
         />
         </Form.Group>
-      <div>{this.state.datesError}</div>
+      <div className='div-error' color='red'>{this.state.datesError}</div>
         <Form.Group widths='equal'>
         <Form.Select
           label='How many travelers?'
@@ -146,7 +146,7 @@ class BookingForm extends Component {
           placeholder='Travelers'
         />
       </Form.Group>
-        <div color='red'>{this.state.travelersError}</div>
+        <div className='div-error' color='red'>{this.state.travelersError}</div>
         <Form.Button inverted color='red'>Submit</Form.Button>
       </Form>
 
