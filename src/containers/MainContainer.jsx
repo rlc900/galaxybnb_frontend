@@ -167,7 +167,7 @@ renderForm = (routerProps) => {
       <div className='main-container'>
       <NavBar />
       <Switch>
-        <Route path={['/', '/home']} render={(props) => <Home {...props} sendStateToMain={this.sendStateToMain} stateFromMain={this.state}/>}/>
+        <Route exact path={['/', '/home']} render={(props) => <Home {...props} sendStateToMain={this.sendStateToMain} stateFromMain={this.state}/>}/>
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>

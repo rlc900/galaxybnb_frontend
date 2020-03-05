@@ -126,8 +126,7 @@ class PlanetLocations extends Component {
       return this.props.stateFromMain.planetObj.locations ? this.props.stateFromMain.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
           <Card.Group >
-           <Card centered={true} stackable='true' itemsPerRow={3}>
-
+           <Card centered={true} stackable='true' itemsPerRow={3} color='black'>
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>
                 <Card.Header>{locationObj.name}</Card.Header>
@@ -189,13 +188,15 @@ class PlanetLocations extends Component {
   render() {
     // debugger;
     // console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
-    console.log(this.props.stateFromMain.planetObj.image);
-    console.log(this.state);
-    console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
+    // console.log(this.props.stateFromMain.planetObj.image);
+    // console.log(this.state);
+    // console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
+    let {name} = this.props.stateFromMain.planetObj
       return (
         <div >
         <Grid centered columns={2}>
         <Grid.Column>
+        <h1>Planet {name}</h1>
           <Image src={this.props.stateFromMain.planetObj.image} />
         </Grid.Column>
         <Grid.Row centered columns={4}>
