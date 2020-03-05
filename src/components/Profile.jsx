@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Icon, Image, Button } from 'semantic-ui-react';
 
 class Profile extends Component {
 
@@ -13,7 +13,8 @@ class Profile extends Component {
 
     if (this.props.stateFromMain.user.locationsBooked) {
       return this.props.stateFromMain.user.locationsBooked.map((booked_location) => {
-        return (<div className='profile-div' align='center'>
+
+        return (<div key={booked_location.id} className='profile-div' align='center'>
     <Card align='center'>
     <Image src={booked_location.image} wrapped ui={false} />
     <Card.Content>
@@ -22,7 +23,7 @@ class Profile extends Component {
         <span className='date'>{booked_location.datesRange}</span>
       </Card.Meta>
       <Card.Description>
-        Card Descriptions might go here if i have time to come up with them??
+      Paid &{booked_location.price}
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
@@ -39,13 +40,13 @@ class Profile extends Component {
   }
 
   render() {
-    console.log(this.props.stateFromMain.datesRange);
+    console.log(this.props.stateFromMain.user.locationsBooked);
     let {user} = this.props.stateFromMain
     return (
       <div>
       <h2>{user.username}&apos;s Profile</h2>
       {this.renderBookedLocations()}
-      <button className='ui button' onClick={this.handleClick}>Delete Profile :/</button>
+      <Button className='ui button' inverted color='red' onClick={this.handleClick}>Delete Profile</Button>
       </div>
     );
   }

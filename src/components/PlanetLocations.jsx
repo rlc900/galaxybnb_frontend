@@ -6,6 +6,7 @@ import StripeCheckout from 'react-stripe-checkout'
 // import Review from './Review'
 
 
+
 class PlanetLocations extends Component {
 
   state = {
@@ -64,6 +65,8 @@ class PlanetLocations extends Component {
       })
   }
 
+  // STRIPE FETCH
+
   onToken = (token) => {
     const charge = {
       token: token.id
@@ -78,7 +81,8 @@ class PlanetLocations extends Component {
         price:  1999
       })
   }
-
+  let planetId = this.props.match.params.id;
+  // debugger
   fetch('http://localhost:4000/charges', config)
     .then(res => res.json())
     .then(charge => {
@@ -104,7 +108,7 @@ class PlanetLocations extends Component {
         <Button
           disabled={ this.props.stateFromMain.token ? false : true}
           circular={true}
-          inverted color='violet'
+          inverted color='red'
         >
         Book Location <Icon name='right chevron' />
         </Button>
@@ -124,11 +128,12 @@ class PlanetLocations extends Component {
     let {datesRange, numOfTravelers} = this.props.stateFromMain
     let {name} = this.props.stateFromMain.planetObj
       return this.props.stateFromMain.planetObj.locations ? this.props.stateFromMain.planetObj.locations.map((locationObj) => {
-        return <Grid.Column>
+        return <Grid.Column key={locationObj.id}>
           <Card.Group >
-           <Card centered={true} stackable='true' itemsPerRow={3} color='black'>
+           <Card centered={true} stackable='true' itemsperrow={3} color='black'>
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>
+              <h1>&{locationObj.price} galactic credits</h1>
                 <Card.Header>{locationObj.name}</Card.Header>
 
               <Modal trigger={
@@ -145,10 +150,11 @@ class PlanetLocations extends Component {
                       <Image wrapped size='medium' src='../baby_yoda.png' />
                     </div>
                     <Modal.Description >
-                    <h1>Planet: { name }</h1>
+                    <h1 className='planet-name'>Planet: { name }</h1>
                     <h1>Location: {locationObj.name}</h1>
                     <h2>Date Range: { datesRange }</h2>
                     <h3>Number of Travelers: { numOfTravelers }</h3>
+                    <h3>Price: {locationObj.price}</h3>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
@@ -190,7 +196,7 @@ class PlanetLocations extends Component {
     // console.log('STATE FROM PLANET_LOCATIONS', this.state.planetObj)
     // console.log(this.props.stateFromMain.planetObj.image);
     // console.log(this.state);
-    // console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain)
+    // console.log('PROPS FROM PLANET_LOCATIONS', this.props.stateFromMain.planetObj.locations)
     let {name} = this.props.stateFromMain.planetObj
       return (
         <div >
