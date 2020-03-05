@@ -23,7 +23,7 @@ class Profile extends Component {
         <span className='date'>{booked_location.datesRange}</span>
       </Card.Meta>
       <Card.Description>
-      Paid &{booked_location.price}
+      Paid &{booked_location.price * booked_location.numOfTravelers}
       </Card.Description>
     </Card.Content>
     <Card.Content extra>

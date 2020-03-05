@@ -71,6 +71,7 @@ class PlanetLocations extends Component {
     const charge = {
       token: token.id
     };
+    let location_id = this.state.location_id
     const config = {
       method: 'POST',
       headers: {
@@ -78,10 +79,10 @@ class PlanetLocations extends Component {
       },
       body: JSON.stringify({
         charge: charge,
-        price:  1999
+        location_id,
+        numOfTravelers: this.props.stateFromMain.numOfTravelers
       })
   }
-  let planetId = this.props.match.params.id;
   // debugger
   fetch('http://localhost:4000/charges', config)
     .then(res => res.json())
