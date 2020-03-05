@@ -124,7 +124,9 @@ class PlanetLocations extends Component {
     let {name} = this.props.stateFromMain.planetObj
       return this.props.stateFromMain.planetObj.locations ? this.props.stateFromMain.planetObj.locations.map((locationObj) => {
         return <Grid.Column>
-           <Card centered={true}>
+          <Card.Group>
+           <Card centered={true} stackable={true}>
+
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>
                 <Card.Header>{locationObj.name}</Card.Header>
@@ -174,6 +176,7 @@ class PlanetLocations extends Component {
               </Modal>
               </Card.Content>
              </Card>
+             </Card.Group>
           </Grid.Column>
 
       }) : 'The force is not with you.'
