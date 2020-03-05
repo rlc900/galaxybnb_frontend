@@ -109,9 +109,11 @@ label['Review'] {
   font-family: 'Star Jedi', arial;
 }
 
-.ui.inverted.violet.button,
-.ui.inverted.violet.buttons .button {
-  font-family: 'Star Jedi', serif;
+.ui.inverted.red.button {
+    left: auto;
+    right: 0;
+    font-family: 'Star Jedi', arial;
+    font-size: small;
 }
 
 .ui.form .field>label {

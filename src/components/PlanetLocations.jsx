@@ -133,7 +133,7 @@ class PlanetLocations extends Component {
 
               <Modal trigger={
                 <div>
-                <Button animated inverted color='violet' size='small' onClick={() => this.handleBooking(locationObj.id)}
+                <Button animated inverted color='red' size='small' onClick={() => this.handleBooking(locationObj.id)}
                 ><Button.Content visible>Board Ship</Button.Content>
                   <Button.Content hidden>
                     <Emoji symbol="🚀🚀🚀" label="spaceship"/>
@@ -157,7 +157,7 @@ class PlanetLocations extends Component {
               </Modal>
 
               <Modal trigger={
-                <Button inverted color='violet'>
+                <Button inverted color='red'>
                 <Button.Content visible>Desc</Button.Content>
                 </Button>
                 }>
