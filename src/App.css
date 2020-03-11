@@ -38,7 +38,11 @@ h1.ui.header {
   font-family: 'Star Jedi', serif;
   font-size: 400%;
   color: white;
+  /* background-image: '../space.gif'; */
 
+  background: radial-gradient(circle, rgba(255,0,0,1) 10%, rgba(0,0,0,1) 50%, rgba(255,0,0,1) 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* LOGIN FORM START */
