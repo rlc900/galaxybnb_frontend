@@ -165,7 +165,7 @@ class PlanetLocations extends Component {
 
               <Modal trigger={
                 <Button inverted color='red'>
-                <Button.Content visible>Desc</Button.Content>
+                <Button.Content visible>Reviews</Button.Content>
                 </Button>
                 }>
               <Modal.Header>{locationObj.name}</Modal.Header>

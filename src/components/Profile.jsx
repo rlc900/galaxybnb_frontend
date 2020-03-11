@@ -15,7 +15,8 @@ class Profile extends Component {
       return this.props.stateFromMain.user.locationsBooked.map((booked_location) => {
 
         return (<div key={booked_location.id} className='profile-div' align='center'>
-    <Card align='center'>
+    <Card.Group >
+    <Card centered={true}>
     <Image src={booked_location.image} wrapped ui={false} />
     <Card.Content>
       <Card.Header>{booked_location.name}</Card.Header>
@@ -31,6 +32,7 @@ class Profile extends Component {
         {booked_location.numOfTravelers}
     </Card.Content>
   </Card>
+  </Card.Group >
   </div>)
       })
     } else {

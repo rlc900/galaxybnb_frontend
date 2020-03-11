@@ -89,6 +89,7 @@ class MainContainer extends Component {
     })
     .then(r => r.json())
     .then(userData => {
+      // console.log(userData)
       if (!userData.error) {
         localStorage.setItem('token', userData.token)
         this.setState({
