@@ -155,7 +155,7 @@ class PlanetLocations extends Component {
                     <h1>Location: {locationObj.name}</h1>
                     <h2>Date Range: { datesRange }</h2>
                     <h3>Number of Travelers: { numOfTravelers }</h3>
-                    <h3>Price: {locationObj.price}</h3>
+                    <h3>Price: {locationObj.price * numOfTravelers}</h3>
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
