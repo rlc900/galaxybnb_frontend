@@ -134,9 +134,8 @@ class PlanetLocations extends Component {
            <Card centered={true} stackable='true' itemsperrow={3} color='black'>
             <Image src={locationObj.image} wrapped ui={false} />
             <Card.Content>
-              <h1>&{locationObj.price} galactic credits</h1>
-                <Card.Header>{locationObj.name}</Card.Header>
-
+              <h1>{locationObj.name}</h1>
+                <Card.Header>&{locationObj.price} galactic credits</Card.Header>
               <Modal trigger={
                 <div>
                 <Button animated inverted color='red' size='small' onClick={() => this.handleBooking(locationObj.id)}
