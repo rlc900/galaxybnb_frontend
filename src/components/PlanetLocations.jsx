@@ -172,9 +172,6 @@ class PlanetLocations extends Component {
                   <Image wrapped size='medium' src={locationObj.image} />
                   <Modal.Description>
                   <Header></Header>
-                  {locationObj.reviews.map((review) => {
-                    return <p>{review.rating} - {this.props.stateFromMain.user.username}</p>
-                  })}
 
 
                   <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id} error_message={this.props.stateFromMain.error_message}/>
@@ -213,7 +210,8 @@ class PlanetLocations extends Component {
       );
   }
 }
-
-
+// {locationObj.reviews.map((review) => {
+//   return <p>{review.rating} - {review.username}</p>
+// })}
 
 export default PlanetLocations;

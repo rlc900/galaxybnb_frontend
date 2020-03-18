@@ -73,6 +73,15 @@ class MainContainer extends Component {
         }
       })
     }
+
+    fetch(`http://localhost:4000/planets`)
+        .then(r => r.json())
+        .then((planetArr) => {
+          // console.log(planetArr[0].name)
+          this.setState({
+            planets: planetArr
+          });
+        })
   }
 
   handleSubmit = (userInfo, route, method) => {
@@ -146,12 +155,11 @@ renderForm = (routerProps) => {
     })
   }
 
-  sendStateToMain = (planets, selectedPlanet, datesRange, numOfTravelers) => {
+  sendToMain = (selectedPlanet, datesRange, numOfTravelers) => {
     this.setState({
       selectedPlanet: selectedPlanet,
       datesRange: datesRange,
-      numOfTravelers: numOfTravelers,
-      planets: planets
+      numOfTravelers: numOfTravelers
     })
   }
 
@@ -162,13 +170,13 @@ renderForm = (routerProps) => {
 
 
   render() {
-    // console.log('MAIN CONT STATE', this.state)
-    // console.log('STATE FROM MAIN_CONTAINER', this.state)
+    // console.log('MAIN CONT STATE', this.state.planetObj)
+    console.log('STATE FROM MAIN_CONTAINER', this.state)
     return (
       <div className='main-container'>
       <NavBar />
       <Switch>
-        <Route exact path={['/', '/home']} render={(props) => <Home {...props} sendStateToMain={this.sendStateToMain} stateFromMain={this.state}/>}/>
+        <Route exact path={['/', '/home']} render={(props) => <Home {...props} sendToMain={this.sendToMain} stateFromMain={this.state}/>}/>
         <Route path='/signup' render={this.renderForm}/>
         <Route path='/login' render={this.renderForm}/>
         <Route path='/profile' render={this.renderProfile}/>

@@ -71,21 +71,21 @@ class BookingForm extends Component {
       this.valuesFromBooking()
     }
   }
-
-  componentDidMount() {
-    //
-    fetch(`http://localhost:4000/planets`)
-        .then(r => r.json())
-        .then((planetArr) => {
-          // console.log(planetArr[0].name)
-          this.setState({
-            planets: planetArr
-          });
-        })
-  }
+  //
+  // componentDidMount() {
+  //   //
+  //   fetch(`http://localhost:4000/planets`)
+  //       .then(r => r.json())
+  //       .then((planetArr) => {
+  //         // console.log(planetArr[0].name)
+  //         this.setState({
+  //           planets: planetArr
+  //         });
+  //       })
+  // }
 
   formatOptions = () => {
-    return this.state.planets.map(planet => {
+    return this.props.stateFromMain.planets.map(planet => {
       return {
         text: planet.name,
         value: planet.id
@@ -98,10 +98,10 @@ class BookingForm extends Component {
       this.setState({ [name]: value });
     }
   }
-
+  //
   valuesFromBooking = () => {
-    let {planets, selectedPlanet, datesRange, numOfTravelers} = this.state
-      this.props.sendStateToMain(planets, selectedPlanet, datesRange, numOfTravelers)
+    let {selectedPlanet, datesRange, numOfTravelers} = this.state
+      this.props.sendToMain(selectedPlanet, datesRange, numOfTravelers)
   }
 
 

@@ -9,11 +9,11 @@ class Home extends Component {
 
   render() {
     // console.log('PROPS FROM HOME', this.props)
-    let {sendStateToMain} = this.props
+    // let {sendStateToMain} = this.props
     return (
       <div className='home' >
       <Header as='h1' align='center'>Galaxybnb</Header>
-      <BookingForm history={this.props.history} sendStateToMain={sendStateToMain} stateFromMain={this.props.stateFromMain}/>
+      <BookingForm history={this.props.history} sendToMain={this.props.sendToMain} stateFromMain={this.props.stateFromMain}/>
       </div>
     );
   }
