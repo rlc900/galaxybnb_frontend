@@ -72,18 +72,6 @@ class BookingForm extends Component {
     }
   }
   //
-  // componentDidMount() {
-  //   //
-  //   fetch(`http://localhost:4000/planets`)
-  //       .then(r => r.json())
-  //       .then((planetArr) => {
-  //         // console.log(planetArr[0].name)
-  //         this.setState({
-  //           planets: planetArr
-  //         });
-  //       })
-  // }
-
   formatOptions = () => {
     return this.props.stateFromMain.planets.map(planet => {
       return {
@@ -107,7 +95,7 @@ class BookingForm extends Component {
 
   render() {
     // console.log(this.state)
-    // console.log(this.props.stateFromMain)
+    console.log(this.props.stateFromMain)
     return (
       <div className='booking-form' align='center'>
 
