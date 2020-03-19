@@ -28,8 +28,10 @@ class ReviewForm extends Component {
     // .then(console.log)
     .then((reviewObj) => {
       // let locationId = this.props.locationId
-
       this.props.addReview(reviewObj)
+      this.setState({
+        rating: ''
+      })
       // console.log(reviewObj)
     })
   }
@@ -52,10 +54,11 @@ class ReviewForm extends Component {
            control='input'
            input type='text' name='rating' value={this.state.rating} onChange={this.onChange}
            placeholder='Write a review...'
+           autoComplete='off'
          />
        </Form.Group>
 
-       <Form.Button type='submit'>Submit Review</Form.Button>
+       <Form.Button inverted color='red'>Submit Review</Form.Button>
 
        <Divider hidden />
      </Form>
