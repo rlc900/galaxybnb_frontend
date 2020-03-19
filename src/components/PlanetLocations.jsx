@@ -173,7 +173,7 @@ class PlanetLocations extends Component {
                   <Modal.Description>
                   <Header></Header>
                   {locationObj.reviews.map((review) => {
-                    return <p>{review.rating} - {review.username}</p>
+                    return <div className='review'><p>{review.rating} - {review.username}</p></div>
                   })}
                   <ReviewForm token={this.props.stateFromMain.token} addReview={this.props.addReview} locationId={locationObj.id} error_message={this.props.stateFromMain.error_message}/>
 
