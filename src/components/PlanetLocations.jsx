@@ -26,7 +26,7 @@ class PlanetLocations extends Component {
     let planetId = this.props.match.params.id;
     // console.log(planetId)
     // debugger
-    fetch(`http://localhost:4000/planets/${planetId}`)
+    fetch(`https://galaxybnb.herokuapp.com/planets/${planetId}`)
     .then(r => r.json())
     .then(planetObj => {
       this.sendData(planetObj)
@@ -46,7 +46,7 @@ class PlanetLocations extends Component {
     // let {token} = this.props.stateFromMain
 
     // if (token) {
-      fetch('http://localhost:4000/bookings', {
+      fetch('https://galaxybnb.herokuapp.com/bookings', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -84,7 +84,7 @@ class PlanetLocations extends Component {
       })
   }
   // debugger
-  fetch('http://localhost:4000/charges', config)
+  fetch('https://galaxybnb.herokuapp.com/charges', config)
     .then(res => res.json())
     .then(charge => {
       if (charge) {
