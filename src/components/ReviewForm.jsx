@@ -13,7 +13,7 @@ class ReviewForm extends Component {
     evt.preventDefault()
     // console.log('aye')
 
-    fetch(`https://galaxybnb.herokuapp.com/reviews`, {
+    fetch(`https://galaxybnb-backend.herokuapp.com/reviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

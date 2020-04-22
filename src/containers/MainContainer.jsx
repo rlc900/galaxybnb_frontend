@@ -55,7 +55,7 @@ class MainContainer extends Component {
     // info persisted when page refreshes
     if(localStorage.getItem('token')) {
       let token = localStorage.getItem('token')
-      fetch(`https://galaxybnb.herokuapp.com/persist`, {
+      fetch(`https://galaxybnb-backend.herokuapp.com/persist`, {
         headers: {
         'Authorization': `bearer ${token}`
       }
@@ -74,7 +74,7 @@ class MainContainer extends Component {
       })
     }
 
-    fetch(`https://galaxybnb.herokuapp.com/planets`)
+    fetch(`https://galaxybnb-backend.herokuapp.com/planets`)
         .then(r => r.json())
         .then((planetArr) => {
           // console.log(planetArr[0].name)
@@ -87,7 +87,7 @@ class MainContainer extends Component {
   handleSubmit = (userInfo, route, method) => {
     // console.log(route)
     // console.log('Form has been submitted')
-    fetch(`https://galaxybnb.herokuapp.com${route}`, {
+    fetch(`https://galaxybnb-backend.herokuapp.com${route}`, {
       method: method,
       headers: {
         'content-type': 'application/json'
@@ -145,7 +145,7 @@ renderForm = (routerProps) => {
 
 
   handleDelete = (id) => {
-    fetch(`https://galaxybnb.herokuapp.com/users/${id}`, {
+    fetch(`https://galaxybnb-backend.herokuapp.com/users/${id}`, {
       method: 'DELETE'
     })
     .then(r => r.json())
